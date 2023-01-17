@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "881178665884",
+    "firebase_url": "https://rakwa-331713-default-rtdb.firebaseio.com",
+    "project_id": "rakwa-331713",
+    "storage_bucket": "rakwa-331713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881178665884:android:8025cfb4c1b4c6a9e59e59",
+        "android_client_info": {
+          "package_name": "com.app.rakwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881178665884-pebtkijkjbpelt3fsh06hq43hm991mdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzDugd59L7iOpUmUdp3HoxnHNOmiI2rjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881178665884-pebtkijkjbpelt3fsh06hq43hm991mdd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "881178665884-1dbpfs90ed0v542qfkvvacip3fm7i2ku.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.rakwa"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881178665884:android:923887e497979682e59e59",
+        "android_client_info": {
+          "package_name": "rakwa.turkey.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881178665884-pebtkijkjbpelt3fsh06hq43hm991mdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzDugd59L7iOpUmUdp3HoxnHNOmiI2rjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881178665884-pebtkijkjbpelt3fsh06hq43hm991mdd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "881178665884-1dbpfs90ed0v542qfkvvacip3fm7i2ku.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.rakwa"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
