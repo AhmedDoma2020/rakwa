@@ -11,6 +11,7 @@ import 'package:rakwa/model/country_model.dart';
 import 'package:rakwa/model/create_item_model.dart';
 import 'package:rakwa/model/custom_field_model.dart';
 import 'package:rakwa/model/paid_items_model.dart';
+import 'package:rakwa/shared_preferences/shared_preferences.dart';
 
 class ListApiController with ApiHelper {
   Future<List<CountryModel>> getCountrys() async {
@@ -171,9 +172,9 @@ class ListApiController with ApiHelper {
     List myField = [];
     Uri uri;
     if (isList) {
-      uri = Uri.parse('${ApiKey.addList}211/create-item');
+      uri = Uri.parse('${ApiKey.addList}${SharedPrefController().id}/create-item');
     } else {
-      uri = Uri.parse('${ApiKey.addList}211/create-classified');
+      uri = Uri.parse('${ApiKey.addList}${SharedPrefController().id}/create-classified');
     }
 
     if (customFileds != null && customFileds.isNotEmpty) {

@@ -210,7 +210,7 @@ class UploadImageWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'قم بتحميل صوره ',
+                        'قم بتحميل الصورة البارزة',
                         style: GoogleFonts.notoKufiArabic(
                             textStyle:
                                 const TextStyle(color: Color(0xFF3399CC))),
@@ -275,7 +275,7 @@ class UploadImagesWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'قم بتحميل الصور',
+                        'قم بتحميل صور تعبر عن عملك',
                         style: GoogleFonts.notoKufiArabic(
                             textStyle:
                                 const TextStyle(color: Color(0xFF3399CC))),
