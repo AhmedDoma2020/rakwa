@@ -18,16 +18,16 @@ import 'package:rakwa/widget/SnackBar/custom_snack_bar.dart';
 
 import '../../../model/paid_items_model.dart';
 
-class AddWorkController extends GetxController {
+class AddWorkOrAdsController extends GetxController {
   final bool isList;
 
-  AddWorkController({required this.isList}); //Category Data
+  AddWorkOrAdsController({required this.isList}); //Category Data
   int parentCategory = -1;
 
   void setParentCategory(int id) {
     parentCategory = id;
     selectedCategoriesIds.clear();
-    printDM("parentCategory is $parentCategory");
+    printDM("parentCategory is => $parentCategory");
   }
 
   //Category Data
@@ -39,8 +39,15 @@ class AddWorkController extends GetxController {
     } else {
       selectedCategoriesIds.add(id);
     }
-    update(["update_categories_ids"]);
-    printDM("selectedSubCategoriesIds is $selectedCategoriesIds");
+    if (isList) {
+      update(["update_categories_ids"]);
+      printDM(
+          "isList $isList selectedSubCategoriesIds is => $selectedCategoriesIds");
+    } else {
+      update(["update_Classified_categories_ids"]);
+      printDM(
+          "isList $isList selectedSubCategoriesIds is => $selectedCategoriesIds");
+    }
   }
 
   void navigationAfterSelectSubCategories() {
@@ -57,8 +64,9 @@ class AddWorkController extends GetxController {
   final GetCustomFieldController _getCustomFieldController =
       Get.put(GetCustomFieldController());
 
-  void _getCustomField() {
-    _getCustomFieldController.getCustom(
+  void _getCustomField() async {
+    printDM("_getCustomField is called ");
+    await _getCustomFieldController.getCustom(
         isList: isList, categoryIds: selectedCategoriesIds);
   }
 
@@ -236,8 +244,10 @@ class AddWorkController extends GetxController {
 
 // add work
 
-  Future<bool> addWork({ required List<dynamic> checkBox,required List<dynamic> textFiled}) async {
-   setLoading();
+  Future<bool> addWork(
+      {required List<dynamic> checkBox,
+      required List<dynamic> textFiled}) async {
+    setLoading();
     bool status = await ListApiController().addList(
       checkBox: checkBox,
       textFiled: textFiled,
@@ -254,9 +264,12 @@ class AddWorkController extends GetxController {
         ),
       );
       return status;
-    }
-    else{
-      customSnackBar(title: "حدث خطاء ما", isWarning: true);
+    } else {
+      customSnackBar(
+        title: "حدث خطاء ما",
+        subtitle: "برجاء المحاوله مره اخرى",
+        isWarning: true,
+      );
       return status;
     }
   }

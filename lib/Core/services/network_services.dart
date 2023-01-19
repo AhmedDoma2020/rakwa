@@ -111,6 +111,8 @@ class NetworkService with ApiKey {
     } on DioError catch (e) {
       printDM("error url in network is $url");
       printDM("error body in network is  $body");
+      printDM("e is =>> $e");
+
       if (e.response != null) {
         response = e.response;
       }

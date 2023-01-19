@@ -22,6 +22,7 @@ class CustomFieldModel {
 
 class Data {
   int? id;
+  Null? categoryId;
   String? customFieldName;
   String? customFieldType;
   String? customFieldSeedValue;
@@ -31,6 +32,7 @@ class Data {
 
   Data({
     this.id,
+    this.categoryId,
     this.customFieldName,
     this.customFieldType,
     this.customFieldSeedValue,
@@ -41,6 +43,7 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    categoryId = json['category_id'];
     customFieldName = json['custom_field_name'];
     customFieldType = json['custom_field_type'];
     customFieldSeedValue = json['custom_field_seed_value'];

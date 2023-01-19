@@ -29,7 +29,7 @@ class GetCustomFieldController extends GetxController {
         }
       }
     }
-
+printDM("checkBoxData is ${checkBoxData}");
   }
 
   void refreshData(){

@@ -95,19 +95,19 @@ class TopHomeScreenWidget extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  width: Get.width * 0.4,
-                  padding: const EdgeInsets.all(5),
+                   padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 6),
                   decoration: BoxDecoration(
                       color: AppColors.mainColor,
                       borderRadius: BorderRadius.circular(5)),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'اعمال بالقرب منك',
                         style: GoogleFonts.notoKufiArabic(
                             color: Colors.white, fontWeight: FontWeight.w500),
                       ),
+                      8.ESW(),
                       const Icon(
                         Icons.location_on_rounded,
                         color: Colors.white,

@@ -41,7 +41,9 @@ class _AddListSocialInformationScreenState
 
   @override
   Widget build(BuildContext context) {
-    AddWorkController addWorkController =Get.find();
+    printDM("1.checkBoxData.length is ${customFieldGetxController.checkBoxData.length}");
+
+    AddWorkOrAdsController addWorkController =Get.find();
     var node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBars.appBarDefault(
@@ -66,7 +68,7 @@ class _AddListSocialInformationScreenState
             24.ESH(),
             StepsWidget(selectedStep: 5),
             32.ESH(),
-            GetBuilder<AddWorkController>(
+            GetBuilder<AddWorkOrAdsController>(
               builder: (_) => ListView(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

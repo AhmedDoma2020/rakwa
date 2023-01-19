@@ -20,7 +20,6 @@ import 'package:rakwa/widget/my_text_field.dart';
 import 'package:rakwa/widget/next_step_button.dart';
 import 'package:rakwa/widget/steps_widget.dart';
 
-GetCustomFieldController customFieldGetxController = Get.find();
 
 class AddCustomFieldScreen extends StatefulWidget {
   final bool isList;
@@ -45,21 +44,25 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
     super.dispose();
   }
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  GetCustomFieldController customFieldGetxController = Get.find();
 
   @override
-  Widget build(BuildContext context) {
-    AddWorkController addWorkController = Get.find();
+  Widget build(BuildContext context){
+  printDM("visible is $visible");
+  printDM("customFieldGetxController.checkBoxData.length is ${customFieldGetxController.checkBoxData.length}");
+  AddWorkOrAdsController addWorkController = Get.find();
+
     return Scaffold(
       floatingActionButton: FloatingActionButtonNext(
         onTap: () async {
 
             if (visible) {
-              if (globalKey.currentState!.validate()) {
-                globalKey.currentState!.save();
+              // if (globalKey.currentState!.validate()) {
+              //   globalKey.currentState!.save();
                 setState(() {
                   visible = false;
                 });
-              }
+              // }
             } else {
               clicked = !clicked;
               for (int i = 0;
@@ -67,7 +70,7 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
               i++) {
                 customFieldGetxController.allTextDataWithId.add([
                   customFieldGetxController.allTextData[i][0].text,
-                  customFieldGetxController.allTextData[i][1].id,
+                  customFieldGetxController.allTextData[i][1].categoryId,
                   customFieldGetxController.allTextData[i][1].customFieldName
                 ]);
               }
@@ -123,6 +126,8 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
                   },
                   itemCount: customFieldGetxController.checkBoxData.length,
                   itemBuilder: (context, index) {
+                    printDM("visible 2 is $visible");
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -147,54 +152,51 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
                   },
                 ),
               ),
-              child: Form(
-                key: globalKey,
-                child: ListView.separated(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                        height: 16,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 4,
-                        ));
-                  },
-                  itemCount: customFieldGetxController.allTextData.length,
-                  itemBuilder: (context, index) {
-                    bool isUrlField = customFieldGetxController
-                        .allTextData[index][1].customFieldType=="4";
-                    return TextFieldDefault(
-                      upperTitle: customFieldGetxController
-                          .allTextData[index][1].customFieldName!,
-                      hint: isUrlField? "https://www.rakwa.com/":'ادخل هنا',
-                      controller: customFieldGetxController.allTextData[index][0],
-                      keyboardType: TextInputType.multiline,
-                      validation: isUrlField?urlValidator:null,
-                      maxLines: 5,
-                    );
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Text(
-                    //       customFieldGetxController
-                    //           .allTextData[index][1].customFieldName!,
-                    //       style: GoogleFonts.notoKufiArabic(
-                    //           textStyle: const TextStyle(
-                    //               fontSize: 16, fontWeight: FontWeight.w500)),
-                    //     ),
-                    //     const SizedBox(
-                    //       height: 15,
-                    //     ),
-                    //     SingleSeedWidget(
-                    //       textEditingController:
-                    //       customFieldGetxController.allTextData[index][0],
-                    //     )
-                    //   ],
-                    // );
-                  },
-                ),
+              child: ListView.separated(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                      height: 16,
+                      child: Divider(
+                        color: Colors.white,
+                        thickness: 4,
+                      ));
+                },
+                itemCount: customFieldGetxController.allTextData.length,
+                itemBuilder: (context, index) {
+                  bool isUrlField = customFieldGetxController
+                      .allTextData[index][1].customFieldType=="4";
+                  return TextFieldDefault(
+                    upperTitle: customFieldGetxController
+                        .allTextData[index][1].customFieldName!,
+                    hint: isUrlField? "https://www.rakwa.com/":'ادخل هنا',
+                    controller: customFieldGetxController.allTextData[index][0],
+                    keyboardType: TextInputType.multiline,
+                    validation: isUrlField?urlValidator:null,
+                    maxLines: 5,
+                  );
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Text(
+                  //       customFieldGetxController
+                  //           .allTextData[index][1].customFieldName!,
+                  //       style: GoogleFonts.notoKufiArabic(
+                  //           textStyle: const TextStyle(
+                  //               fontSize: 16, fontWeight: FontWeight.w500)),
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 15,
+                  //     ),
+                  //     SingleSeedWidget(
+                  //       textEditingController:
+                  //       customFieldGetxController.allTextData[index][0],
+                  //     )
+                  //   ],
+                  // );
+                },
               ),
             ),
           ),
@@ -257,6 +259,7 @@ class _MultiSeedWidgetState extends State<MultiSeedWidget> {
       checkBoxDataSub.add([split[i], false]);
     }
   }
+  GetCustomFieldController customFieldGetxController = Get.find();
 
   @override
   void initState() {
@@ -323,7 +326,7 @@ class _MultiSeedWidgetState extends State<MultiSeedWidget> {
                           customFieldGetxController.checkBoxDataValueWithId
                               .add([
                             checkBoxDataSub[index][0],
-                            widget.customFieldSeedValue.id,
+                            widget.customFieldSeedValue.categoryId,
                             widget.customFieldSeedValue.customFieldName,
                           ]);
                         } else {
@@ -333,7 +336,7 @@ class _MultiSeedWidgetState extends State<MultiSeedWidget> {
                               .removeWhere(
                             (element) =>
                                 element[0] == checkBoxDataSub[index][0] &&
-                                element[1] == widget.customFieldSeedValue.id &&
+                                element[1] == widget.customFieldSeedValue.categoryId &&
                                 element[2] ==
                                     widget.customFieldSeedValue.customFieldName,
                           );

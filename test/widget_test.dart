@@ -98,7 +98,7 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
             i++) {
               customFieldGetxController.allTextDataWithId.add([
                 customFieldGetxController.allTextData[i][0].text,
-                customFieldGetxController.allTextData[i][1].id,
+                customFieldGetxController.allTextData[i][1].categoryId,
                 customFieldGetxController.allTextData[i][1].customFieldName
               ]);
             }
@@ -342,7 +342,7 @@ class _MultiSeedWidgetState extends State<MultiSeedWidget> {
                         .add(checkBoxDataSub[index][0]);
                     customFieldGetxController.checkBoxDataValueWithId.add([
                       checkBoxDataSub[index][0],
-                      widget.customFieldSeedValue.id,
+                      widget.customFieldSeedValue.categoryId,
                       widget.customFieldSeedValue.customFieldName,
                     ]);
                   } else {
@@ -351,7 +351,7 @@ class _MultiSeedWidgetState extends State<MultiSeedWidget> {
                     customFieldGetxController.checkBoxDataValueWithId
                         .removeWhere((element) =>
                     element[0] == checkBoxDataSub[index][0] &&
-                        element[1] == widget.customFieldSeedValue.id &&
+                        element[1] == widget.customFieldSeedValue.categoryId &&
                         element[2] ==
                             widget.customFieldSeedValue.customFieldName);
                     // checkBoxDataValueWithId.remove([

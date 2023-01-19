@@ -1,98 +1,129 @@
-class MessagesModel {
-  int? code;
-  bool? status;
-  Data? data;
-  Message? message;
+class BaseMessageModel {
+  BaseMessageModel({
+    required this.code,
+    required this.status,
+    required this.subject,
+    required this.message,
+    required this.item,
+  });
+  late final int code;
+  late final bool status;
+  late final List<Subject> subject;
+  late final List<Message> message;
+  late final List<ItemModel> item;
 
-  MessagesModel({this.code, this.status, this.data, this.message});
-
-  MessagesModel.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    status = json['status'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    message =
-        json['message'] != null ? new Message.fromJson(json['message']) : null;
+  BaseMessageModel.fromJson(Map<String, dynamic> json){
+    code = json['code']??500;
+    status = json['status']??bool;
+    subject = List.from(json['subject']).map((e)=>Subject.fromJson(e)).toList();
+    message = List.from(json['message']).map((e)=>Message.fromJson(e)).toList();
+    item = List.from(json['item']).map((e)=>ItemModel.fromJson(e)).toList();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    if (this.message != null) {
-      data['message'] = this.message!.toJson();
-    }
-    return data;
-  }
+
 }
 
-class Data {
-  int? id;
-  String? subject;
-  String? createdAt;
-  String? updatedAt;
-  dynamic deletedAt;
+class Subject {
+  Subject({
+    required this.id,
+    required this.subject,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+  late final int id;
+  late final String subject;
+  late final String createdAt;
+  late final String updatedAt;
 
-  Data({this.id, this.subject, this.createdAt, this.updatedAt, this.deletedAt});
-
-  Data.fromJson(Map<String, dynamic> json) {
+  Subject.fromJson(Map<String, dynamic> json){
     id = json['id'];
     subject = json['subject'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['subject'] = this.subject;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['deleted_at'] = this.deletedAt;
-    return data;
-  }
+
 }
 
 class Message {
-  int? id;
-  int? threadId;
-  int? userId;
-  String? body;
-  String? createdAt;
-  String? updatedAt;
-  dynamic deletedAt;
+  Message({
+    required this.id,
+    required this.threadId,
+    required this.userId,
+    required this.body,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.user,
+  });
+  late final int id;
+  late final int threadId;
+  late final int userId;
+  late final String body;
+  late final String createdAt;
+  late final String updatedAt;
+  late final User user;
 
-  Message(
-      {this.id,
-      this.threadId,
-      this.userId,
-      this.body,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt});
-
-  Message.fromJson(Map<String, dynamic> json) {
+  Message.fromJson(Map<String, dynamic> json){
     id = json['id'];
     threadId = json['thread_id'];
     userId = json['user_id'];
     body = json['body'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
+    user = User.fromJson(json['user']);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['thread_id'] = this.threadId;
-    data['user_id'] = this.userId;
-    data['body'] = this.body;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['deleted_at'] = this.deletedAt;
-    return data;
-  }
+
 }
+
+class User {
+  User({
+    required this.id,
+    required this.name,
+    required this.userImage,
+
+  });
+  late final int id;
+  late final String name;
+  late final String userImage;
+
+
+  User.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+    name = json['name'];
+    userImage = json['user_image'];
+
+  }
+
+
+}
+
+
+class ItemModel {
+  ItemModel({
+    required this.id,
+    required this.threadId,
+    required this.itemId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.itemCategoriesName,
+  });
+  late final int id;
+  late final int threadId;
+  late final int itemId;
+  late final String createdAt;
+  late final String updatedAt;
+  late final String itemCategoriesName;
+
+  ItemModel.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+    threadId = json['thread_id'];
+    itemId = json['item_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    itemCategoriesName = json['item']["item_categories_string"];
+  }
+
+
+}
+

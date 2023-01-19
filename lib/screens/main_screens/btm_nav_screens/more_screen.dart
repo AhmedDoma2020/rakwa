@@ -80,7 +80,7 @@ class _MoreScreenState extends State<MoreScreen> with Helpers {
                     onTap: () {
                       Get.to(() => const MessagesScreen());
                     },
-                    title: "المسجات",
+                    title: "الرسائل",
                     icon: "message",
                   ),
                   const CustomMoreScreenDivider(),
@@ -115,9 +115,11 @@ class _MoreScreenState extends State<MoreScreen> with Helpers {
                 children: [
                   CardMoreScreen(
                     onTap: () {
-                      chickIsRoleidAndNavigation(navigateTo: () {
-                        Get.to(() =>  AddListCategoryScreen());
-                      });
+                      chickIsRoleidAndNavigation(
+                        navigateTo: () {
+                          Get.to(() => AddListCategoryScreen());
+                        },
+                      );
                     },
                     title: "اضف عملك",
                     icon: "MAdd",
@@ -165,7 +167,7 @@ class _MoreScreenState extends State<MoreScreen> with Helpers {
                           builder: (BuildContext context) => AlertDialog(
                               title: const Text('هل انت متاكد؟'),
                               content: const Text(
-                                  'سيتم حدف حسابك بشكل نهائي هل انت متاكد ؟'),
+                                  'سيتم حذف حسابك بشكل نهائي هل انت متاكد ؟'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
@@ -190,7 +192,6 @@ class _MoreScreenState extends State<MoreScreen> with Helpers {
                                       if (SharedPrefController().isLogined) {
                                         await AuthApiController()
                                             .deleteAccount();
-
                                       }
                                     },
                                     child: Text('نعم',
@@ -198,7 +199,7 @@ class _MoreScreenState extends State<MoreScreen> with Helpers {
                               ]),
                         );
                       },
-                      title: "حدف حسابك",
+                      title: "حذف حسابك",
                       icon: "delete",
                     ),
                   ]

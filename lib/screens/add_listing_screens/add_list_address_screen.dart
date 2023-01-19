@@ -74,7 +74,7 @@ class _AddListAddressScreenState extends State<AddListAddressScreen>
   @override
   Widget build(BuildContext context) {
     ListController listController = Get.put(ListController());
-    AddWorkController addWordController = Get.find();
+    AddWorkOrAdsController addWordController = Get.find();
     var node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBars.appBarDefault(
@@ -84,7 +84,7 @@ class _AddListAddressScreenState extends State<AddListAddressScreen>
           addWordController.navigationAfterAddAddress(globalKey,location['lat'],location['lng']);
         },
       ),
-      body: GetBuilder<AddWorkController>(
+      body: GetBuilder<AddWorkOrAdsController>(
         id: 'update_address_screen',
         builder: (_) => ListView(
           physics: const BouncingScrollPhysics(),

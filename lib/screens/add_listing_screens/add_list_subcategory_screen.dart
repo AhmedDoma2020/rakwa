@@ -33,7 +33,7 @@ class AddListSubCategoryScreen extends StatefulWidget {
 class _AddListSubCategoryScreenState extends State<AddListSubCategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    AddWorkController addWordController = Get.find();
+    AddWorkOrAdsController addWordController = Get.find();
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'إضافة عمل'),
       floatingActionButton: FloatingActionButtonNext(
@@ -86,7 +86,7 @@ class _AddListSubCategoryScreenState extends State<AddListSubCategoryScreen> {
                                         snapshot.data![index].id);
                                   },
                                   borderRadius: BorderRadius.circular(8),
-                                  child: GetBuilder<AddWorkController>(
+                                  child: GetBuilder<AddWorkOrAdsController>(
                                     id: 'update_categories_ids',
                                       builder: (_) {
                                     return Material(

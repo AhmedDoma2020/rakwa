@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rakwa/api/api_controllers/auth_api_controller.dart';
+import 'package:rakwa/screens/main_screens/btm_nav_screens/More/Widgets/card_more_screen.dart';
 import 'package:rakwa/screens/personal_screens/acount_information_screen.dart';
 import 'package:rakwa/screens/personal_screens/address_screen.dart';
 import 'package:rakwa/screens/personal_screens/change_password_screen.dart';
@@ -51,7 +52,7 @@ class _PersonalScreenState extends State<PersonalScreen> with Helpers {
             height: 30,
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             color: Colors.white,
             child: Row(
               children: [
@@ -131,7 +132,7 @@ class _PersonalScreenState extends State<PersonalScreen> with Helpers {
             color: Colors.white,
             child: ListView.separated(
                 padding: EdgeInsets.zero,
-              shrinkWrap: true,
+                shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Padding(
@@ -166,12 +167,29 @@ class _PersonalScreenState extends State<PersonalScreen> with Helpers {
                 },
                 itemCount: actions.length),
           ),
-
-          const SizedBox(
-            height: 32,
+          const SizedBox(height: 24),
+          Container(
+            color: Colors.white,
+            child: ListTile(
+              onTap: () async {
+                if (SharedPrefController().isLogined) {
+                  bool status = await AuthApiController().logout();
+                } else {
+                  Get.offAllNamed('/sign_in_screen');
+                }
+              },
+              leading: Image.asset("images/LogOut.png"),
+              title: Text(
+                SharedPrefController().isLogined
+                    ? "تسجيل الخروج"
+                    : "تسجيل الدخول",
+                style: GoogleFonts.notoKufiArabic(
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16)),
+              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
+            ),
           ),
-
-
         ],
       ),
     );

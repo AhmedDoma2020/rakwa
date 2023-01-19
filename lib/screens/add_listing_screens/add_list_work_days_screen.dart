@@ -87,7 +87,7 @@ class _AddListWorkDaysScreenState extends State<AddListWorkDaysScreen>
 
   @override
   Widget build(BuildContext context) {
-    AddWorkController addWorkController = Get.find();
+    AddWorkOrAdsController addWorkController = Get.find();
     var node = FocusScope.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -237,7 +237,7 @@ class _AddListWorkDaysScreenState extends State<AddListWorkDaysScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 24),
-                    GetBuilder<AddWorkController>(
+                    GetBuilder<AddWorkOrAdsController>(
                       builder:(_) =>  TextFieldDefault(
                         upperTitle: "السعر",
                         hint: 'ادخل السعر',

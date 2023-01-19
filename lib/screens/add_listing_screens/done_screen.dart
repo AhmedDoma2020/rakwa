@@ -47,8 +47,8 @@ class _DoneScreenState extends State<DoneScreen> {
               height: 24,
             ),
             MainElevatedButton(
-              height: 47,
-              width: 220,
+              height: 60,
+              width: 260,
               borderRadius: 20,
               onPressed: () => Get.offAll(() => const MainScreen()),
               child: Text('العودة الى الصفحة الرئيسية',

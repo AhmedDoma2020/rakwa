@@ -30,16 +30,16 @@ class _AddListCategoryScreenState extends State<AddListCategoryScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    Get.delete<AddWorkController>();
+    Get.delete<AddWorkOrAdsController>();
     Get.delete<GetCustomFieldController>();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ListController listController = Get.put(ListController());
-    final AddWorkController addWordController =
-        Get.put(AddWorkController(isList: true));
+     Get.put(ListController());
+    final AddWorkOrAdsController addWordController =
+        Get.put(AddWorkOrAdsController(isList: true));
     // printDM("addWordController.selectedCategoryId is ${addWordController.selectedCategoryId}");
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'إضافة عمل'),
@@ -122,7 +122,7 @@ class _AddListCategoryScreenState extends State<AddListCategoryScreen> {
                                           );
                                         },
                                         borderRadius: BorderRadius.circular(8),
-                                        child: GetBuilder<AddWorkController>(
+                                        child: GetBuilder<AddWorkOrAdsController>(
                                           id: 'update_categories_ids',
                                           builder: (_) {
                                             return Material(

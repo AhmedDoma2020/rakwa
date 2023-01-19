@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/controller/list_controller.dart';
+import 'package:rakwa/screens/add_listing_screens/Controllers/add_work_controller.dart';
 import 'package:rakwa/screens/add_listing_screens/add_list_subcategory_screen.dart';
 import 'package:rakwa/widget/appbars/app_bars.dart';
 
@@ -15,9 +17,10 @@ import '../../widget/steps_widget.dart';
 import 'add_list_title_screen.dart';
 
 class AddListClassifiedSubCategoryScreen extends StatefulWidget {
-  final int id;
+  final int categoryId;
 
-  const AddListClassifiedSubCategoryScreen({super.key, required this.id});
+  const AddListClassifiedSubCategoryScreen(
+      {super.key, required this.categoryId});
 
   @override
   State<AddListClassifiedSubCategoryScreen> createState() =>
@@ -26,39 +29,32 @@ class AddListClassifiedSubCategoryScreen extends StatefulWidget {
 
 class _AddListClassifiedSubCategoryScreenState
     extends State<AddListClassifiedSubCategoryScreen> {
-  ListController _listController = Get.find();
   List<String>? selectedSubID = [];
 
   @override
   Widget build(BuildContext context) {
+    AddWorkOrAdsController addWorkController = Get.find();
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'إضافة اعلان'),
       floatingActionButton: FloatingActionButtonNext(
         onTap: () {
           ///
-          // Get.to(() => AddListTitleScreen(
-          //     createItemModel: getCreateItemModel(subCategory: selectedSubID!),
-          //     isList: false,
-          //   ));
+          addWorkController.navigationAfterSelectSubCategories();
+
         },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 24,
-          ),
+          24.ESH(),
           StepsWidget(selectedStep: 0),
-          const SizedBox(
-            height: 32,
-          ),
+          32.ESH(),
           Expanded(
-            child
-                : Padding(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: FutureBuilder<List<AllCategoriesModel>>(
-                future:
-                    ListApiController().getClassifiedSubCategory(id: widget.id),
+                future: ListApiController()
+                    .getClassifiedSubCategory(id: widget.categoryId),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -67,40 +63,33 @@ class _AddListClassifiedSubCategoryScreenState
                       ),
                     );
                   } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-                    return AnimationLimiter(
-                      child: GridView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 18,
-                                mainAxisSpacing: 24),
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          return AnimationConfiguration.staggeredGrid(
-                            position: index,
-                            duration: const Duration(milliseconds: 500),
-                            columnCount: snapshot.data!.length,
-                            child: ScaleAnimation(
-                              child: FadeInAnimation(
-                                child: InkWell(
-                                  onTap:  () {
-                                    ///
-                                    // _listController.changeSubCategory(index);
-                                    // if (selectedSubID != null &&
-                                    //     selectedSubID!.contains(
-                                    //         snapshot.data![index].id.toString())) {
-                                    //   selectedSubID!
-                                    //       .remove(snapshot.data![index].id.toString());
-                                    // } else {
-                                    //   selectedSubID!
-                                    //       .add(snapshot.data![index].id.toString());
-                                    // }
-                                  },
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: GetBuilder<ListController>(
-                                      builder: (controller) {
-                                    return Material(
+                    return GetBuilder<AddWorkOrAdsController>(
+                      id: "update_Classified_categories_ids",
+                      builder: (_) => AnimationLimiter(
+                        child: GridView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 12,
+                          ),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredGrid(
+                              position: index,
+                              duration: const Duration(milliseconds: 500),
+                              columnCount: snapshot.data!.length,
+                              child: ScaleAnimation(
+                                child: FadeInAnimation(
+                                  child: InkWell(
+                                    onTap: () {
+                                      ///
+                                      _.setCategoriesIds(
+                                          snapshot.data![index].id);
+                                    },
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Material(
                                       elevation: 1,
                                       color: Colors.transparent,
                                       borderRadius: BorderRadius.circular(8),
@@ -109,10 +98,9 @@ class _AddListClassifiedSubCategoryScreenState
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                             width: 2,
-                                            color: selectedSubID != null &&
-                                                    selectedSubID!.contains(
-                                                        snapshot.data![index].id
-                                                            .toString())
+                                            color: _.selectedCategoriesIds
+                                                    .contains(snapshot
+                                                        .data![index].id)
                                                 ? AppColors.mainColor
                                                 : Colors.transparent,
                                           ),
@@ -149,13 +137,13 @@ class _AddListClassifiedSubCategoryScreenState
                                           ],
                                         ),
                                       ),
-                                    );
-                                  }),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     );
                   } else {
@@ -163,11 +151,11 @@ class _AddListClassifiedSubCategoryScreenState
                       const Duration(milliseconds: 1),
                       () {
                         ///
-                        // Get.off(() => AddListTitleScreen(
-                        //       createItemModel:
-                        //           getCreateItemModel(subCategory: null),
-                        //       isList: false,
-                        //     ));
+                        Get.off(
+                          () => AddListTitleScreen(
+                            isList: false,
+                          ),
+                        );
                       },
                     );
                     return const Center(child: Text('لا توجد تصنيفات'));
@@ -187,7 +175,7 @@ class _AddListClassifiedSubCategoryScreenState
     createItemModel.itemFeatured = '0';
     createItemModel.itemPostalCode = '34515';
     createItemModel.itemHourShowHours = '1';
-    createItemModel.category.add(widget.id);
+    createItemModel.category.add(widget.categoryId);
     if (subCategory != null) {
       createItemModel.category.addAll(subCategory);
     }

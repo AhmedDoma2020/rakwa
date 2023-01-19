@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:html/parser.dart';
+import 'package:rakwa/Core/utils/extensions.dart';
+import 'package:rakwa/Core/utils/view_photo.dart';
 import 'package:rakwa/api/api_controllers/review_api_controller.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
 import 'package:rakwa/controller/image_picker_controller.dart';
@@ -191,9 +193,10 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                                 widget.detailsModel.item!.itemAddress!
                                     .toString(),
                                 style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.describtionLabel),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.titleBlack,
+                                ),
                               ),
                             ),
                           ],
@@ -572,26 +575,16 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                           scrollDirection: Axis.horizontal,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return InkWell(
-                              borderRadius: BorderRadius.circular(4),
-                              onTap: () {
-                                Get.to(
-                                  () => PhotoViewWidget(
-                                    imageProvider: NetworkImage(
-                                        'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${widget.detailsModel.item!.galleries![index].itemImageGalleryName}'),
-                                  ),
-                                );
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: Image.network(
-                                  'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${widget.detailsModel.item!.galleries![index].itemImageGalleryName}',
-                                  fit: BoxFit.cover,
-                                  width: 180,
-                                  height: 157,
-                                ),
-                              ),
-                            );
+                            List<String> photos = [];
+                            for (var item
+                                in widget.detailsModel.item!.galleries!) {
+                              photos.add(
+                                  'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${item.itemImageGalleryName}');
+                            }
+                            return ImageViewWidget(
+                                photos: photos,
+                                photo: widget.detailsModel.item!
+                                    .galleries![index].itemImageGalleryName!);
                           },
                           separatorBuilder: (context, index) {
                             return const SizedBox(
@@ -704,7 +697,7 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                 Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Text(
-                    'المشاركة',
+                    'التواصل مع ادارة العمل',
                     style: GoogleFonts.notoKufiArabic(
                         textStyle: const TextStyle(
                             fontSize: 16,
@@ -725,7 +718,10 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                             itemId: widget.detailsModel.item!.id.toString()));
                       },
                       child: Column(
-                        children: const [Icon(Icons.message), Text('المسجات')],
+                        children: const [
+                          Icon(Icons.message),
+                          Text('أرسل رسالة')
+                        ],
                       ),
                     ),
                     const VerticalDivider(
@@ -749,13 +745,6 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                       child: Column(
                         children: const [Icon(Icons.copy), Text('نسخ الرابط')],
                       ),
-                    ),
-                    const VerticalDivider(
-                      color: Color(0xffF4F4F4),
-                      thickness: 1,
-                    ),
-                    Column(
-                      children: const [Icon(Icons.more_horiz), Text('المزيد')],
                     ),
                   ],
                 ))
@@ -1428,5 +1417,39 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
           message: 'حدث خطا ما',
           backgroundColor: Colors.red.shade700);
     }
+  }
+}
+
+class ImageViewWidget extends StatelessWidget {
+  const ImageViewWidget({
+    Key? key,
+    required this.photos,
+    required this.photo,
+  }) : super(key: key);
+
+  final List<String> photos;
+  final String photo;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(4),
+      onTap: () {
+        Get.to(
+          () => ViewPhoto(
+            photos: photos,
+          ),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4),
+        child: Image.network(
+          'https://www.rakwa.com/laravel_project/public/storage/item/gallery/$photo',
+          fit: BoxFit.cover,
+          width: 180,
+          height: 157,
+        ),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rakwa/Core/services/dialogs.dart';
 import 'package:rakwa/api/api_controllers/messages_api_controller.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
@@ -83,13 +84,18 @@ class _CreateMessageState extends State<CreateMessage> with Helpers {
                 width: Get.width,
                 borderRadius: 12,
                 onPressed: () async {
+                  node.unfocus();
                   if (globalKey.currentState!.validate()) {
                     globalKey.currentState!.save();
+                    setLoading();
                     bool status = await MessagesApiCpntroller().createMessage(
-                        itemId: widget.itemId,
-                        message: _messageController.text,
-                        subject: _titleController.text);
+                      itemId: widget.itemId,
+                      message: _messageController.text,
+                      subject: _titleController.text,
+                    );
+                    Get.back();
                     if (status) {
+                      Get.back();
                       ShowMySnakbar(
                           title: 'تمت العملية بنجاح',
                           message: 'تم ارسال رسالتك بنجاح',

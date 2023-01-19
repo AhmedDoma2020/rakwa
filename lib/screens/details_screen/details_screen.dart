@@ -103,457 +103,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                   color: AppColors.mainColor,
                 ));
               } else if (snapshot.hasData) {
-                // return CustomScrollView(
-                //   controller: scrollController,
-                //   slivers: [
-                //     SliverAppBar(
-                //       leading: const SizedBox(),
-                //       leadingWidth: 0,
-                //       expandedHeight: Get.height * 0.53,
-                //       backgroundColor: Colors.white,
-                //       pinned: true,
-                //       // bottom: PreferredSize(
-                //       //   preferredSize: Size.fromHeight(0),
-                //       //   child: Container(
-                //       //       height: 48,
-                //       //       decoration: const BoxDecoration(
-                //       //           // borderRadius: BorderRadius.circular(12),
-                //       //           color: Colors.white,
-                //       //           border: Border(
-                //       //             top: BorderSide(width: 0.1),
-                //       //           )),
-                //       //       child: Row(
-                //       //         mainAxisAlignment: MainAxisAlignment.center,
-                //       //         children: [
-                //       //           Expanded(
-                //       //             child: InkWell(
-                //       //               onTap: () {
-                //       //                 Scrollable.ensureVisible(
-                //       //                     detailsKey.currentContext!);
-                //       //               },
-                //       //               child: const Text(
-                //       //                 'تفاصيل',
-                //       //                 textAlign: TextAlign.center,
-                //       //                 style: TextStyle(fontWeight: FontWeight.bold),
-                //       //               ),
-                //       //             ),
-                //       //           ),
-                //       //           Expanded(
-                //       //             child: InkWell(
-                //       //               onTap: () {
-                //       //                 Scrollable.ensureVisible(
-                //       //                     rateKey.currentContext!);
-                //       //               },
-                //       //               child: const Text(
-                //       //                 'تقييمات',
-                //       //                 textAlign: TextAlign.center,
-                //       //                 style: TextStyle(fontWeight: FontWeight.bold),
-                //       //               ),
-                //       //             ),
-                //       //           ),
-                //       //         ],
-                //       //       )
-
-                //       //       //  TabBar(
-                //       //       //     indicatorWeight: 4,
-                //       //       //     controller: _tabController,
-                //       //       //     labelColor: AppColors.mainColor,
-                //       //       //     indicatorColor: AppColors.mainColor,
-                //       //       //     unselectedLabelColor: AppColors.unSelectedTabBar,
-                //       //       //     tabs: const [
-                //       //       //       Tab(
-                //       //       //         child: Text(
-                //       //       //           'تفاصيل',
-                //       //       //           style: TextStyle(fontWeight: FontWeight.bold),
-                //       //       //         ),
-                //       //       //       ),
-                //       //       //       Tab(child: Text('تقييمات'),
-
-                //       //       //       ),
-                //       //       //     ]),
-                //       //       ),
-                //       // ),
-                //       // title:
-
-                //       title: GetBuilder<ShowTitleGetxController>(
-                //         builder: (controller) {
-                //           return showTitleGetxController.show
-                //               ? Text(
-                //                   snapshot.data!.item!.itemTitle!,
-                //                   style: GoogleFonts.notoKufiArabic(
-                //                       textStyle: const TextStyle(
-                //                           color: Colors.black,
-                //                           fontSize: 18,
-                //                           fontWeight: FontWeight.bold)),
-                //                 )
-                //               : SizedBox();
-                //         },
-                //       ),
-
-                //       flexibleSpace: FlexibleSpaceBar(
-                //         background: Column(
-                //           children: [
-                //             SizedBox(
-                //               height: 254,
-                //               width: Get.width,
-                //               child: Stack(
-                //                 children: [
-                //                   snapshot.data!.item!.galleries != null &&
-                //                           snapshot
-                //                               .data!.item!.galleries!.isNotEmpty
-                //                       ? CarouselSlider(
-                //                           carouselController:
-                //                               buttonCarouselController,
-                //                           options: CarouselOptions(height: 400.0),
-                //                           items: snapshot.data!.item!.galleries!
-                //                               .map((i) {
-                //                             return Builder(
-                //                               builder: (BuildContext context) {
-                //                                 return Container(
-                //                                   wid
-                //
-                //                                   th: Get.width,
-                //                                   decoration: const BoxDecoration(
-                //                                       color: Colors.white),
-                //                                   child: Stack(
-                //                                     children: [
-                //                                       Image.network(
-                //                                         'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${i.itemImageGalleryName}',
-                //                                         fit: BoxFit.cover,
-                //                                         width: Get.width,
-                //                                       ),
-                //                                       Positioned.fill(
-                //                                         child: Opacity(
-                //                                           opacity: 0.5,
-                //                                           child: Container(
-                //                                             decoration:
-                //                                                 const BoxDecoration(
-                //                                                     gradient: LinearGradient(
-                //                                                         begin: Alignment
-                //                                                             .topCenter,
-                //                                                         end: Alignment
-                //                                                             .bottomCenter,
-                //                                                         colors: [
-                //                                                   Colors.white,
-                //                                                   Colors.black26,
-                //                                                   Colors.black,
-                //                                                 ])),
-                //                                           ),
-                //                                         ),
-                //                                       ),
-                //                                     ],
-                //                                   ),
-                //                                 );
-                //                               },
-                //                             );
-                //                           }).toList(),
-                //                         )
-                //                       : Stack(
-                //                           children: [
-                //                             Image.network(
-                //                               'https://www.rakwa.com/laravel_project/public/storage/item/${snapshot.data!.item!.itemImage}',
-                //                               fit: BoxFit.cover,
-                //                               width: Get.width,
-                //                             ),
-                //                             Positioned.fill(
-                //                               child: Opacity(
-                //                                 opacity: 0.5,
-                //                                 child: Container(
-                //                                   decoration: const BoxDecoration(
-                //                                       gradient: LinearGradient(
-                //                                           begin:
-                //                                               Alignment.topCenter,
-                //                                           end: Alignment
-                //                                               .bottomCenter,
-                //                                           colors: [
-                //                                         Colors.white,
-                //                                         Colors.black26,
-                //                                         Colors.black,
-                //                                       ])),
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                           ],
-                //                         ),
-                //                   Positioned(
-                //                       left: 16,
-                //                       top: 56,
-                //                       child: CircleAvatar(
-                //                         backgroundColor:
-                //                             Colors.white.withOpacity(0.4),
-                //                         child: IconButton(
-                //                             onPressed: () => saveItem(
-                //                                 id: snapshot.data!.item!.id
-                //                                     .toString()),
-                //                             icon: const Icon(
-                //                               Icons.bookmark_outline_sharp,
-                //                               // Icons.bookmark_outlined,
-                //                               color: Colors.black,
-                //                             )),
-                //                       )),
-                //                   Positioned(
-                //                       right: 16,
-                //                       top: 56,
-                //                       child: CircleAvatar(
-                //                         backgroundColor:
-                //                             Colors.white.withOpacity(0.4),
-                //                         child: IconButton(
-                //                             onPressed: () {
-                //                               Get.back();
-                //                             },
-                //                             icon: const Icon(
-                //                               Icons.arrow_back,
-                //                               color: Colors.black,
-                //                             )),
-                //                       )),
-                //                   Positioned(
-                //                       right: 16,
-                //                       bottom: 46,
-                //                       child: Container(
-                //                         padding: const EdgeInsets.symmetric(
-                //                             vertical: 5, horizontal: 10),
-                //                         decoration: BoxDecoration(
-                //                             // color: Colors.white.withOpacity(0.5),
-                //                             borderRadius:
-                //                                 BorderRadius.circular(10)),
-                //                         child: Text(
-                //                           snapshot.data!.item!.itemTitle!,
-                //                           style: GoogleFonts.notoKufiArabic(
-                //                               textStyle: const TextStyle(
-                //                                   fontSize: 18,
-                //                                   color: Colors.white,
-                //                                   fontWeight: FontWeight.bold)),
-                //                         ),
-                //                       )),
-                //                   Positioned(
-                //                       left: 5,
-                //                       bottom: 10,
-                //                       child: snapshot.data!.item!.galleries !=
-                //                                   null &&
-                //                               snapshot.data!.item!.galleries!
-                //                                   .isNotEmpty
-                //                           ? TextButton(
-                //                               onPressed: () {
-                //                                 Get.to(() => GalleryScreen(
-                //                                     galleries: snapshot
-                //                                         .data!.item!.galleries!));
-                //                               },
-                //                               // icon: Icon(
-                //                               //   Icons.image,
-                //                               //   size: 30,
-                //                               //   color: Colors.grey.shade400,
-                //                               // ),
-                //                               child: Container(
-                //                                   height: 25,
-                //                                   width: 120,
-                //                                   decoration: BoxDecoration(
-                //                                       gradient:
-                //                                           const LinearGradient(
-                //                                               begin: Alignment
-                //                                                   .topRight,
-                //                                               end: Alignment
-                //                                                   .bottomLeft,
-                //                                               colors: [
-                //                                             Color.fromARGB(
-                //                                                 255, 245, 65, 65),
-                //                                             Color.fromARGB(255,
-                //                                                 248, 169, 169)
-                //                                           ]),
-
-                //                                       // color: Colors.white.withOpacity(0.5),
-                //                                       borderRadius:
-                //                                           BorderRadius.circular(
-                //                                               10)),
-                //                                   child: Center(
-                //                                       child: Text(
-                //                                     'مشاهدة جميع الصور',
-                //                                     style: GoogleFonts
-                //                                         .notoKufiArabic(
-                //                                             textStyle:
-                //                                                 const TextStyle(
-                //                                                     fontSize: 10,
-                //                                                     color: Colors
-                //                                                         .white)),
-                //                                   ))),
-                //                             )
-                //                           : const SizedBox()),
-                //                   Positioned(
-                //                     right: 16,
-                //                     bottom: 19,
-                //                     child: RateStarsWidget(
-                //                         padding: true,
-                //                         rate: snapshot.data!.item!
-                //                                     .itemAverageRating ==
-                //                                 null
-                //                             ? null
-                //                             : double.parse(snapshot
-                //                                 .data!.item!.itemAverageRating
-                //                                 .toString())),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //             const SizedBox(
-                //               height: 16,
-                //             ),
-                //             Padding(
-                //                 padding:
-                //                     const EdgeInsets.symmetric(horizontal: 16),
-                //                 child: SizedBox(
-                //                   height: 35,
-                //                   child: ListView.builder(
-                //                     scrollDirection: Axis.horizontal,
-                //                     physics: const BouncingScrollPhysics(),
-                //                     itemCount: snapshot
-                //                         .data!.item!.allCategories!.length,
-                //                     itemBuilder: (context, index) {
-                //                       return Container(
-                //                         padding: const EdgeInsets.symmetric(
-                //                             vertical: 5, horizontal: 8),
-                //                         margin: const EdgeInsets.only(left: 5),
-                //                         alignment: Alignment.center,
-                //                         decoration: BoxDecoration(
-                //                           borderRadius: BorderRadius.circular(30),
-                //                           color: Colors.blueAccent,
-                //                           border: Border.all(
-                //                               color: Color.fromARGB(
-                //                                   255, 170, 234, 247)),
-                //                         ),
-                //                         child: Text(
-                //                           snapshot
-                //                               .data!
-                //                               .item!
-                //                               .allCategories![index]
-                //                               .categoryName!,
-                //                           style: GoogleFonts.notoKufiArabic(
-
-                //                               // ignore: prefer_const_constructors
-                //                               textStyle: TextStyle(
-                //                                   fontSize: 12,
-                //                                   color: Colors.white,
-                //                                   fontWeight: FontWeight.bold)),
-                //                         ),
-                //                       );
-                //                     },
-                //                   ),
-                //                 )),
-                //             const SizedBox(
-                //               height: 20,
-                //             ),
-                //             Container(
-                //               height: 45,
-                //               margin: const EdgeInsets.symmetric(horizontal: 16),
-                //               decoration: BoxDecoration(
-                //                 borderRadius: BorderRadius.circular(10),
-                //                 border: Border.all(
-                //                   color: Color(0xFF3399CC),
-                //                 ),
-                //               ),
-                //               child: TextButton(
-                //                   style: ButtonStyle(
-                //                       fixedSize: MaterialStateProperty.all(
-                //                           Size(Get.width, 40))),
-                //                   onPressed: () {
-                //                     if (SharedPrefController().roleId == 3) {
-                //                       if (SharedPrefController().verifiedEmail !=
-                //                           'null') {
-                //                         Get.to(() => CreateClaimsScreen(
-                //                             id: snapshot.data!.item!.id
-                //                                 .toString()));
-                //                       } else {
-                //                         ShowMySnakbar(
-                //                             title: 'لم تقم بتاكيد حسابك',
-                //                             message: 'يجب عليك تاكيد حسابك قبل',
-                //                             backgroundColor: Colors.red.shade700);
-                //                       }
-                //                     } else if (SharedPrefController().roleId ==
-                //                         2) {
-                //                       alertDialogRoleAuthUser(context);
-                //                     } else {
-                //                       AlertDialogUnAuthUser(context);
-                //                     }
-                //                   },
-                //                   child: Text(
-                //                     'المطالبة بإدارة العمل',
-                //                     style: GoogleFonts.notoKufiArabic(
-                //                         textStyle: const TextStyle(
-                //                             color: Color(0xFF3399CC))),
-                //                   )),
-                //             ),
-                //             const SizedBox(
-                //               height: 20,
-                //             ),
-                //             Row(
-                //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //               children: [
-                //                 DetailsButton(
-                //                   iconData: Icons.messenger_outline_rounded,
-                //                   name: 'رسالة',
-                //                   onTap: () {
-                //                     print(snapshot.data!.item!.id.toString());
-                //                     Get.to(() => CreateMessage(
-                //                         itemId:
-                //                             snapshot.data!.item!.id.toString()));
-                //                   },
-                //                 ),
-                //                 DetailsButton(
-                //                   iconData: Icons.location_on_outlined,
-                //                   name: 'الموقع',
-                //                   onTap: () async {
-                //                     openMap(
-                //                         snapshot.data!.item!.itemLat != null
-                //                             ? double.parse(
-                //                                 snapshot.data!.item!.itemLat!)
-                //                             : 41.0082,
-                //                         snapshot.data!.item!.itemLng != null
-                //                             ? double.parse(
-                //                                 snapshot.data!.item!.itemLng!)
-                //                             : 28.9784);
-                //                   },
-                //                 ),
-                //                 DetailsButton(
-                //                   iconData: Icons.star_border_rounded,
-                //                   name: 'اضافة تعليق',
-                //                   onTap: () {
-                //                     Scrollable.ensureVisible(
-                //                         addReview.currentContext!);
-                //                     focusNode.requestFocus();
-                //                   },
-                //                 ),
-                //                 DetailsButton(
-                //                   iconData: Icons.add_a_photo_outlined,
-                //                   name: 'إضافة صورة',
-                //                   onTap: () {
-                //                     Scrollable.ensureVisible(
-                //                         addImage.currentContext!);
-                //                   },
-                //                 ),
-                //               ],
-                //             ),
-                //           const  Divider(
-                //               color: Colors.grey,
-                //             )
-
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     SliverToBoxAdapter(
-                //       child: Column(
-                //         children: [
-                //           DetailsTabBarScreen(
-                //               detailsModel: snapshot.data!,
-                //               addImage: addImage,
-                //               addReview: addReview,
-                //               detailsKey: detailsKey,
-                //               rateKey: rateKey,
-                //               focusNode: focusNode),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // );
-
                 scrollController.addListener(() {
                   if (scrollController.offset > 254) {
                     showTitleGetxController.showTitle(newShow: true);
@@ -638,8 +187,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                             return Container(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      vertical: 5,
-                                                      horizontal: 8),
+                                                      vertical: 6,
+                                                      horizontal: 12),
                                               margin: const EdgeInsets.only(
                                                   left: 5),
                                               alignment: Alignment.center,
@@ -647,9 +196,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 color: Colors.blueAccent,
-                                                border: Border.all(
-                                                    color: Color.fromARGB(
-                                                        255, 170, 234, 247)),
+                                                gradient:
+                                                    AppColors.mainGradient,
                                               ),
                                               child: Text(
                                                 snapshot
@@ -659,14 +207,13 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                     .categoryName!,
                                                 style:
                                                     GoogleFonts.notoKufiArabic(
-
-                                                        // ignore: prefer_const_constructors
-                                                        textStyle: TextStyle(
-                                                            fontSize: 12,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
+                                                  // ignore: prefer_const_constructors
+                                                  textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             );
                                           },
@@ -684,7 +231,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                            color: Color(0xFF3399CC),
+                                            color: Colors.black,
                                           ),
                                         ),
                                         child: TextButton(
@@ -725,9 +272,10 @@ class _DetailsScreenState extends State<DetailsScreen>
                                             child: Text(
                                               'المطالبة بإدارة العمل',
                                               style: GoogleFonts.notoKufiArabic(
-                                                  textStyle: const TextStyle(
-                                                      color:
-                                                          Color(0xFF3399CC))),
+                                                textStyle: const TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             )),
                                       ),
                                     ),
@@ -743,7 +291,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         DetailsButton(
                                           iconData:
                                               Icons.messenger_outline_rounded,
-
                                           name: 'رسالة',
                                           onTap: () {
                                             print(snapshot.data!.item!.id
@@ -777,7 +324,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                           iconData: Icons.star_border_rounded,
                                           name: 'اضافة تعليق',
                                           onTap: () {
-                                            Scrollable.ensureVisible(addReview.currentContext!);
+                                            Scrollable.ensureVisible(
+                                                addReview.currentContext!);
                                             focusNode.requestFocus();
                                           },
                                         ),
@@ -917,7 +465,7 @@ class DetailsButton extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundColor:AppColors.mainColor.withOpacity(.05),
+            backgroundColor: AppColors.mainColor.withOpacity(.05),
             child: Icon(
               iconData,
               color: AppColors.mainColor,

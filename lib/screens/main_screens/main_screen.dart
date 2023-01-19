@@ -140,7 +140,7 @@ class _MainScreenState extends State<MainScreen>
               BottomNavigationBarItem(
                   icon: Icon(Icons.class_),
                   activeIcon: Icon(Icons.class_),
-                  label: 'الاعلانات'),
+                  label: 'إعلانات مبوبة'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.menu),
                   activeIcon: Icon(Icons.menu),

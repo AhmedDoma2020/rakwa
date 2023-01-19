@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/instance_manager.dart';
 import 'package:rakwa/Core/services/network_services.dart';
+import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/Core/utils/network_exceptions.dart';
 import 'package:rakwa/api/api_setting/api_setting.dart';
 

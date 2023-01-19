@@ -48,17 +48,18 @@ class ListApiController with ApiHelper {
 
   Future<CustomFieldModel?> getCustomFields(
       {required List<int> ids, required bool isList}) async {
+
     Map<String, String> data = {};
     for (int i = 0; i < ids.length; i++) {
       data.addAll({'category[$i]' : ids[i].toString()});
     }
     printDM("categoryIds body send is => $data ");
     Uri uri;
-    if (isList) {
+    // if (isList) {
       uri = Uri.parse(ApiKey.customFields);
-    } else {
-      uri = Uri.parse(ApiKey.customClassifiedFields);
-    }
+    // } else {
+    //   uri = Uri.parse(ApiKey.customClassifiedFields);
+    // }
     var response = await http.post(uri, headers: headers, body: data);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);

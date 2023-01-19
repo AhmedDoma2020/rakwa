@@ -27,7 +27,7 @@ class AddListImagesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddWorkController addWordController = Get.find();
+    AddWorkOrAdsController addWordController = Get.find();
     return Scaffold(
       appBar: AppBars.appBarDefault(
           title: isList ? 'إضافة عمل' : 'اضافة اعلان'),

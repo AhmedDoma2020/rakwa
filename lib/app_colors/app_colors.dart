@@ -6,7 +6,7 @@ const double kNCardRadius = 10;
 
 class AppColors {
   // static const mainColor = Color.fromARGB(255, 255, 0, 0);
-  static const mainColor = Color(0xFFFF3E16);
+  static const mainColor = Color(0xFFDF0806);
   static const subTitleColor = Color(0xFFC1C1C1);
   static const labelColor = Color(0xFFBDBDBD);
   static const bottonNavBarColor = Color(0xFF040404);
@@ -20,6 +20,9 @@ class AppColors {
   static const controlPanelView = Color(0xFFF4F4F4);
   static const backDetails = Color(0xFFD9D9D9);
   static const blue = Color(0xFF3399CC);
+  static const titleGrey = Colors.grey;
+  static const titleBlack = Colors.black;
+
 
   static const scaffoldBackGround = Colors.white;
 
@@ -40,6 +43,17 @@ class AppColors {
   static const Color kCTFEnableBorder = Color(0xffE6E6E6);
   static const Color kCTFDisableBorder = Color(0xffE6E6E6);
   static const Color kCTFErrorText = Colors.red;
+
+
+static Gradient mainGradient =LinearGradient(
+  begin: Alignment.topRight,
+  end: Alignment.bottomLeft,
+  colors: [
+  const Color(0xFFFF3E16).withOpacity(.63) ,
+    const Color(0xFFFF3E16),
+  ],
+  );
+
 }
 
 

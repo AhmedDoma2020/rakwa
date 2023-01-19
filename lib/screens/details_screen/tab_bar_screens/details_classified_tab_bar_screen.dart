@@ -15,6 +15,7 @@ import 'package:rakwa/model/details_calssified_model.dart';
 import 'package:rakwa/screens/details_screen/details_classified_screen.dart';
 import 'package:rakwa/screens/details_screen/details_screen.dart';
 import 'package:rakwa/screens/details_screen/gallery_screen/gallery_screen.dart';
+import 'package:rakwa/screens/details_screen/tab_bar_screens/details_tab_bar_screen.dart';
 import 'package:rakwa/screens/messages_screen/create_message.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
 import 'package:rakwa/widget/main_elevated_button.dart';
@@ -633,14 +634,16 @@ class _DetailsClassifiedTabBarScreenState
                           scrollDirection: Axis.horizontal,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: Image.network(
-                                'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${widget.detailsModel.classified!.galleries![index].itemImageGalleryName}',
-                                fit: BoxFit.cover,
-                                width: 180,
-                                height: 157,
-                              ),
+                            List<String> photos = [];
+                            for (var item
+                                in widget.detailsModel.classified!.galleries!) {
+                              photos.add(
+                                  'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${item.itemImageGalleryName}');
+                            }
+                            return ImageViewWidget(
+                              photos: photos,
+                              photo: widget.detailsModel.classified!
+                                  .galleries![index].itemImageGalleryName!,
                             );
                           },
                           separatorBuilder: (context, index) {

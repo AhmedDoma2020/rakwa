@@ -29,7 +29,7 @@ class AddListTitleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
-    AddWorkController addWordController = Get.find();
+    AddWorkOrAdsController addWordController = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -48,7 +48,7 @@ class AddListTitleScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Form(
               key: globalKey,
-              child: GetBuilder<AddWorkController>(
+              child: GetBuilder<AddWorkOrAdsController>(
                 builder:(_) =>  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

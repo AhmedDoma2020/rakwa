@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/api/api_helper/api_helper.dart';
 import 'package:rakwa/api/api_setting/api_setting.dart';
 import 'package:rakwa/model/all_messages_model.dart';
@@ -9,8 +10,7 @@ import 'package:rakwa/shared_preferences/shared_preferences.dart';
 
 class MessagesApiCpntroller with ApiHelper {
   Future<List<AllMessagesModel>> getAllMessages() async {
-    Uri uri =
-        Uri.parse('${ApiKey.user}${SharedPrefController().id}/message');
+    Uri uri = Uri.parse('${ApiKey.user}${SharedPrefController().id}/message');
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
@@ -20,24 +20,45 @@ class MessagesApiCpntroller with ApiHelper {
     return [];
   }
 
-  Future<MessagesModel?> getMessages({required String id}) async {
-    Uri uri =
-        Uri.parse('${ApiKey.user}show/$id/${SharedPrefController().id}');
+  Future<BaseMessageModel?> getMessages({required String id}) async {
+    printDM("message id is $id");
+    Uri uri = Uri.parse('${ApiKey.user}show-message/$id');
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
-      return MessagesModel.fromJson(jsonResponse);
+      return BaseMessageModel.fromJson(jsonResponse);
     }
     return null;
   }
 
-  Future<bool> createMessage(
-      {required String itemId,
-      required String message,
-      required String subject}) async {
+  Future<bool> replyMessages(
+      {required String messageId, required String message}) async {
+    printDM("message id is $messageId");
     Uri uri = Uri.parse(
-        '${ApiKey.user}${SharedPrefController().id}/create-message');
+        '${ApiKey.user}${SharedPrefController().id}/reply-message/$messageId');
+    var response = await http.post(
+      uri,
+      headers: tokenKey,
+      body: {
+        "message": message,
+      },
+    );
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> createMessage({
+    required String itemId,
+    required String message,
+    required String subject,
+  }) async {
+    Uri uri =
+        Uri.parse('${ApiKey.user}${SharedPrefController().id}/create-message');
     var response = await http.post(uri, headers: tokenKey, body: {
       'subject': subject,
       'message': message,

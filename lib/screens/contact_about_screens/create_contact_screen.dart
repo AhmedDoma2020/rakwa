@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rakwa/Core/services/dialogs.dart';
 import 'package:rakwa/api/api_controllers/contact_about_api_controller.dart';
 import 'package:rakwa/api/api_controllers/messages_api_controller.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
@@ -36,7 +37,9 @@ class _CreateContactScreenState extends State<CreateContactScreen>
     _messageController.dispose();
     super.dispose();
   }
+
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
@@ -64,7 +67,7 @@ class _CreateContactScreenState extends State<CreateContactScreen>
                   node.nextFocus();
                 },
               ),
-           const SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFieldDefault(
                 upperTitle: "الرسالة",
                 hint: 'ادخل الرسالة',
@@ -85,10 +88,17 @@ class _CreateContactScreenState extends State<CreateContactScreen>
                 onPressed: () async {
                   if (globalKey.currentState!.validate()) {
                     globalKey.currentState!.save();
-                    bool status = await ContactAboutApiController().createContact(
-                        subject: _titleController.text,
-                        message: _messageController.text);
+                    setLoading();
+
+                    bool status =
+                        await ContactAboutApiController().createContact(
+                      subject: _titleController.text,
+                      message: _messageController.text,
+                    );
+                    Get.back();
+
                     if (status) {
+                      Get.back();
                       ShowMySnakbar(
                           title: 'تمت العملية بنجاح',
                           message: 'تم ارسال رسالتك بنجاح',
