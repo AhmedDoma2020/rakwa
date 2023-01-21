@@ -43,7 +43,7 @@ class AdsWidget extends StatelessWidget {
                   //     width: Get.width,
                   //   ),
                   : Image.asset(
-                      'images/logo.png',
+                      'images/logo.jpg',
                       fit: BoxFit.fill,
                       width: Get.width,
                     ),

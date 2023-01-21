@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rakwa/api/api_controllers/classified_api_controller.dart';
 import 'package:rakwa/api/api_controllers/item_api_controller.dart';
 import 'package:rakwa/api/api_controllers/search_api_controller.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
 import 'package:rakwa/model/paid_items_model.dart';
-import 'package:rakwa/model/search_model.dart';
 import 'package:rakwa/screens/details_screen/details_screen.dart';
 import 'package:rakwa/screens/search_screens/filter_screen.dart';
 import 'package:rakwa/widget/TextFields/text_field_default.dart';
 import 'package:rakwa/widget/appbars/app_bars.dart';
 import 'package:rakwa/widget/home_widget.dart';
-import 'package:rakwa/widget/my_text_field.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchScreen extends StatefulWidget {
-  final String? searchNumber;
+  final String? categoryId;
   final bool isItem;
 
-  SearchScreen({this.searchNumber, required this.isItem});
+  const SearchScreen({super.key, this.categoryId, required this.isItem});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -38,7 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
     _searchController = TextEditingController();
-    print('========================================${widget.searchNumber}');
+    print('========================================${widget.categoryId}');
   }
 
   @override
@@ -46,6 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
     _searchController.dispose();
     super.dispose();
   }
+
   final _form2Key = GlobalKey<FormState>();
 
   @override
@@ -58,14 +55,15 @@ class _SearchScreenState extends State<SearchScreen> {
           const SizedBox(height: 20),
           Expanded(
             child: FutureBuilder<List<PaidItemsModel>>(
-              future: widget.searchNumber == null
+              future: widget.categoryId == null
                   ? SearchApiController().search(
                       isItem: widget.isItem,
                       searchQuery: _searchController.text,
                       stateId: stateId,
                       category: category,
                       cityId: cityId,
-                      classifiedcategories: classifiedcategories)
+                      classifiedcategories: classifiedcategories,
+                    )
                   : widget.isItem
                       ?
                       //  SearchApiController().search(
@@ -77,8 +75,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       ItemApiController().searchItem(
                           cityId: cityId,
                           stateId: stateId,
-                          category: widget.searchNumber.toString(),
-                          classifiedcategories: classifiedcategories)
+                          categoryId: widget.categoryId.toString(),
+                          classifiedcategories: classifiedcategories,
+                        )
                       :
                       //  SearchApiController().search(
                       //     searchQuery: _searchController.text,
@@ -91,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           cityId: cityId,
                           stateId: stateId,
                           category: category,
-                          classifiedcategories: widget.searchNumber.toString(),
+                          classifiedcategories: widget.categoryId.toString(),
                         ),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -159,7 +158,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Padding searchAndFilterWidget( GlobalKey<FormState> globalKey) {
+  Padding searchAndFilterWidget(GlobalKey<FormState> globalKey) {
     var node = FocusScope.of(context);
 
     return Padding(

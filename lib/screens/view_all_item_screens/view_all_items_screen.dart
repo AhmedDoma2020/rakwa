@@ -76,7 +76,7 @@ class _ViewAllItemsState extends State<ViewAllItems> {
                       InkWell(
                         onTap: () {
                           Get.to(() => SearchScreen(
-                                searchNumber:
+                                categoryId:
                                     '${widget.categoryId},${widget.id}',
                                     isItem: true,
                               ));
@@ -128,7 +128,7 @@ class _ViewAllItemsState extends State<ViewAllItems> {
                                                 id: allItemGetxController
                                                     .itemWithCategory[0]
                                                     .allItems![index]
-                                                    .id!));
+                                                    .id!.toString()));
                                           },
                                           discount: '25',
                                           image: allItemGetxController

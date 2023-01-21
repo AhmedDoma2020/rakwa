@@ -42,7 +42,7 @@ class NearestItems extends StatelessWidget {
                 onTap: () {
                   Get.to(
                         () => DetailsScreen(
-                      id: snapshot.data![index].id,
+                      id: snapshot.data![index].id.toString(),
                     ),
                   );
                 },

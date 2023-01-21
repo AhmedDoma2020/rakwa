@@ -8,7 +8,28 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Rakwa</string>
-    
+
+    <key>FirebaseDynamicLinksCustomDomains</key>
+    <array>
+        <string>https://custom.domain.io/path1</string>
+        <string>https://custom.domain.io/path2</string>
+    </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>rakwa.page.link</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>https</string>
+        </array>
+        </dict>
+    </array>
+
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>

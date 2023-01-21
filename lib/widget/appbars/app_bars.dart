@@ -15,7 +15,7 @@ class AppBars {
       VoidCallback? onTap}) {
     return AppBar(
       title: isLogo
-          ? const IconPng(
+          ? const IconJpg(
               'rakwaLogo',
               size: 42,
             )

@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:rakwa/Core/utils/dynamic_link_service.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
 import 'package:rakwa/controller/fb_notifications_controller.dart';
 import 'package:rakwa/firebase_options.dart';
@@ -12,12 +15,19 @@ import 'package:rakwa/screens/Auth/screens/sign_in_screen.dart';
 import 'package:rakwa/screens/launch_screen/launch_screen.dart';
 import 'package:rakwa/screens/main_screens/main_screen.dart';
 import 'package:rakwa/shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else if (Platform.isIOS) {
+    await Firebase.initializeApp();
+  }
+
   await FBNotificationsController.initNotifications();
   await SharedPrefController().initPreferences();
   runApp(
@@ -29,8 +39,21 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState(){
+
+    // TODO: implement initState
+    super.initState();
+    DynamicLink().retrieveDynamicLink();
+  }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

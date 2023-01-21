@@ -78,7 +78,7 @@ class _NearbyScreenState extends State<NearbyScreen> {
                   return HomeWidget(
                       onTap: () {
                         Get.to(
-                            () => DetailsScreen(id: snapshot.data![index].id!));
+                            () => DetailsScreen(id: snapshot.data![index].id!.toString()));
                       },
                       doMargin: false,
                       discount: '25',

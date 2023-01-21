@@ -55,6 +55,30 @@ class IconPng extends StatelessWidget {
     );
   }
 }
+class IconJpg extends StatelessWidget {
+  final String imagePath;
+  final Color? color;
+  final double? size;
+  final BoxFit fit;
+
+  const IconJpg(
+    this.imagePath, {
+    Key? key,
+    this.color,
+    this.size,
+    this.fit = BoxFit.contain,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'images/$imagePath.jpg',
+      color: color,
+      height: size,
+      width: size,
+    );
+  }
+}
 
 class IconSvg extends StatelessWidget {
   final String iconPath;

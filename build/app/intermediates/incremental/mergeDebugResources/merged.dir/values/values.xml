@@ -126,7 +126,14 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="default_web_client_id" translatable="false">849159457463-qtur2nidm0bll9norjll58ffa9d6t70t.apps.googleusercontent.com</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
+    <string name="gcm_defaultSenderId" translatable="false">849159457463</string>
+    <string name="google_api_key" translatable="false">AIzaSyCMsF3ZTmwH5pR33k8xfYg1WvqkcR-GySg</string>
+    <string name="google_app_id" translatable="false">1:849159457463:android:cd48542dc12026fdc8db32</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCMsF3ZTmwH5pR33k8xfYg1WvqkcR-GySg</string>
+    <string name="google_storage_bucket" translatable="false">rakwa-6fafc.appspot.com</string>
+    <string name="project_id" translatable="false">rakwa-6fafc</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <!-- Show a splash screen on the activity. Automatically removed when

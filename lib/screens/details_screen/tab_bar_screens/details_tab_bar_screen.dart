@@ -1140,7 +1140,7 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                                 builder: (context) {
                                   return DetailsScreen(
                                       id: widget.detailsModel
-                                          .similarItems![index].id!);
+                                          .similarItems![index].id!.toString());
                                 },
                               ));
                             },

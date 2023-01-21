@@ -72,7 +72,7 @@ class _CheckCodeScreenState extends State<CheckCodeScreen> with Helpers {
         child: Column(
           children: [
             const Spacer(),
-            Image.asset('images/logo.png'),
+            Image.asset('images/logo.jpg'),
             const SizedBox(
               height: 12,
             ),

@@ -41,7 +41,7 @@ class SignInScreen extends StatelessWidget with FBNotificationsController {
                     ),
                     Center(
                       child: Image.asset(
-                        'images/logo.png',
+                        'images/logo.jpg',
                         height: 73,
                         width: 73,
                       ),

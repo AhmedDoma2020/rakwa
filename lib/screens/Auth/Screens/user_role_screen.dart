@@ -62,7 +62,7 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                 children: [
                   SizedBox(height: 24.h),
                   Image.asset(
-                    'images/logo.png',
+                    'images/logo.jpg',
                     height: 98,
                     width: 98,
                   ),
@@ -219,7 +219,7 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
       //       physics: const BouncingScrollPhysics(),
       //       children: [
       //         Image.asset(
-      //           'images/logo.png',
+      //           'images/logo.jpg',
       //           height: 98,
       //           width: 98,
       //         ),

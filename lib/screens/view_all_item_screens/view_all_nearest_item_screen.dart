@@ -57,7 +57,6 @@ class _ViewAllNearestItemScreenState extends State<ViewAllNearestItemScreen> {
                 padding: EdgeInsets.zero,
                 physics: const BouncingScrollPhysics(),
                 separatorBuilder: (context, index) => 16.ESH(),
-
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return AnimationConfiguration.staggeredList(

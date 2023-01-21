@@ -192,7 +192,7 @@ class _MainUserScreenState extends State<MainUserScreen> with Helpers {
       //         elevation: 0,
       //         centerTitle: true,
       //         title: Image.asset(
-      //           'images/logo.png',
+      //           'images/logo.jpg',
       //           height: 42,
       //           width: 42,
       //         ),

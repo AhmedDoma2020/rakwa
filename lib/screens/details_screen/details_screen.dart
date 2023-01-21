@@ -6,6 +6,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rakwa/Core/utils/dynamic_link_service.dart';
+import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/api/api_controllers/details_api_controller.dart';
 import 'package:rakwa/api/api_controllers/save_api_controller.dart';
 import 'package:rakwa/controller/image_picker_controller.dart';
@@ -23,12 +25,13 @@ import 'package:rakwa/screens/messages_screen/create_message.dart';
 import 'package:rakwa/shared_preferences/shared_preferences.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
 import 'package:rakwa/widget/rate_stars_widget.dart';
+import 'package:rakwa/widget/share_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../app_colors/app_colors.dart';
 
 class DetailsScreen extends StatefulWidget {
-  final int id;
+  final String id;
 
   DetailsScreen({required this.id});
 
@@ -56,7 +59,8 @@ class _DetailsScreenState extends State<DetailsScreen>
   final Set<Marker> _marker = {};
 
   void _setMarker({required var detailsModel}) {
-    _marker.add(Marker(
+    _marker.add(
+      Marker(
         markerId: const MarkerId('value'),
         position: LatLng(
             detailsModel.item!.itemLat != null
@@ -67,12 +71,15 @@ class _DetailsScreenState extends State<DetailsScreen>
                 : 28.9784),
         icon: BitmapDescriptor.defaultMarker,
         infoWindow: InfoWindow(
-            title: detailsModel.item!.state != null
-                ? detailsModel.item!.state!.stateName
-                : 'İstanbul',
-            snippet: detailsModel.item!.city != null
-                ? detailsModel.item!.city!.cityName
-                : 'İstanbul')));
+          title: detailsModel.item!.state != null
+              ? detailsModel.item!.state!.stateName
+              : 'İstanbul',
+          snippet: detailsModel.item!.city != null
+              ? detailsModel.item!.city!.cityName
+              : 'İstanbul',
+        ),
+      ),
+    );
   }
 
   @override
@@ -122,6 +129,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                       leading: LeadingSliverAppBarIconDetailsScreen(),
                       actions: [
                         SaveItemWidget(id: snapshot.data!.item!.id.toString()),
+                        ShareItemWidget(id: snapshot.data!.item!.id.toString(),kayType: "category"),
                       ],
                       flexibleSpace: FlexibleSpaceBar(
                         title: Container(
@@ -395,11 +403,12 @@ class SaveItemWidget extends StatelessWidget with Helpers {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(  vertical: 8),
       child: CircleAvatar(
         backgroundColor: Colors.black.withOpacity(0.4),
         child: IconButton(
-            onPressed: () {
+            onPressed: () async{
+
               saveItem(id: id);
             },
             icon: const Icon(

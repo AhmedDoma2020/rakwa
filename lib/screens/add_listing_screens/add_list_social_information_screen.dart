@@ -12,6 +12,7 @@ import 'package:rakwa/screens/add_listing_screens/done_screen.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
 import 'package:rakwa/shared_preferences/shared_preferences.dart';
 import 'package:rakwa/widget/TextFields/text_field_default.dart';
+import 'package:rakwa/widget/TextFields/validator.dart';
 import 'package:rakwa/widget/appbars/app_bars.dart';
 import 'package:rakwa/widget/my_text_field.dart';
 import 'package:rakwa/widget/next_step_button.dart';
@@ -91,6 +92,7 @@ class _AddListSocialInformationScreenState
                     prefixIconPng: "Link",
                     controller: _.websiteController,
                     keyboardType: TextInputType.emailAddress,
+                    validation: urlValidator,
                     onComplete: () {
                       node.nextFocus();
                     },
@@ -102,6 +104,7 @@ class _AddListSocialInformationScreenState
                     prefixIconPng: "Facebook",
                     controller: _.facebookController,
                     keyboardType: TextInputType.emailAddress,
+                    validation: urlValidator,
                     onComplete: () {
                       node.nextFocus();
                     },
@@ -113,6 +116,7 @@ class _AddListSocialInformationScreenState
                     prefixIconPng: "Twitter",
                     controller: _.twitterController,
                     keyboardType: TextInputType.emailAddress,
+                    validation: urlValidator,
                     onComplete: () {
                       node.nextFocus();
                     },
@@ -124,6 +128,7 @@ class _AddListSocialInformationScreenState
                     prefixIconPng: "Instagram",
                     controller: _.instagramController,
                     keyboardType: TextInputType.emailAddress,
+                    validation: urlValidator,
                     onComplete: () {
                       node.nextFocus();
                     },
@@ -135,6 +140,7 @@ class _AddListSocialInformationScreenState
                     prefixIconPng: "LinkedIn",
                     controller: _.linkedInController,
                     keyboardType: TextInputType.emailAddress,
+                    validation: urlValidator,
                     onComplete: () {
                       node.nextFocus();
                     },

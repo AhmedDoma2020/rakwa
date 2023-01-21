@@ -11,6 +11,7 @@ import 'package:rakwa/model/details_calssified_model.dart';
 import 'package:rakwa/screens/details_screen/details_screen.dart';
 import 'package:rakwa/screens/details_screen/tab_bar_screens/details_classified_tab_bar_screen.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
+import 'package:rakwa/widget/share_widget.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../app_colors/app_colors.dart';
@@ -112,6 +113,8 @@ class _DetailsClassifiedScreenState extends State<DetailsClassifiedScreen>
                         SaveItemWidget(
                           id: snapshot.data!.classified!.id.toString(),
                         ),
+                        ShareItemWidget(id: snapshot.data!.classified!.id.toString(),kayType: "classified"),
+
                       ],
                       flexibleSpace: FlexibleSpaceBar(
                         title: Container(

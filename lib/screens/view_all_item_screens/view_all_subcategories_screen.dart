@@ -106,7 +106,7 @@ class _ViewAllSubCategoriesScreenState
                             onTap: () {
                               print(widget.id.toString());
                               Get.to(() => SearchScreen(
-                                    searchNumber: widget.id.toString(),
+                                    categoryId: widget.id.toString(),
                                     isItem: true,
                                   ));
                             },
@@ -226,7 +226,7 @@ class _ViewAllSubCategoriesScreenState
                                                             id: allItemGetxController
                                                                 .itemWithCategory[0]
                                                                 .allItems![index]
-                                                                .id!));
+                                                                .id!.toString()));
                                                       },
                                                       discount: '25',
                                                       image: allItemGetxController

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/api/api_helper/api_helper.dart';
 import 'package:rakwa/api/api_setting/api_setting.dart';
 import 'package:rakwa/model/item_by_id_model.dart';
@@ -41,14 +42,16 @@ class ItemApiController with ApiHelper {
   Future<List<PaidItemsModel>> searchItem(
       {required String cityId,
       required String stateId,
-      required String category,
+      required String categoryId,
       required String classifiedcategories}) async {
-    print(category);
+    print(categoryId);
     Uri uri = Uri.parse(
-        'https://rakwa.com/api/filter?filter_categories[]=$category&filter_state=$stateId&filter_city=$cityId&filter_sort_by=1');
+        'https://rakwa.com/api/filter?filter_categories[]=$categoryId&filter_state=$stateId&filter_city=$cityId&filter_sort_by=1&paginate=200');
+    printDM("uri searchItem is => $uri");
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
+    printDM("jsonResponse searchItem is => $jsonResponse");
       var jsonArray = jsonResponse['free_items']['data'] as List;
       return jsonArray.map((e) => PaidItemsModel.fromJson(e)).toList();
     }

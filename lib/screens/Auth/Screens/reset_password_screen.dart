@@ -34,7 +34,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 Center(
                   child: Image.asset(
-                    'images/logo.png',
+                    'images/logo.jpg',
                   ),
                 ),
                 const SizedBox(

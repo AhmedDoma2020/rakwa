@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,23 +43,41 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAZLzFXweHhgoWb10idNrsq54s43mCoi_8',
+    appId: '1:849159457463:web:490b9169a9ef46d8c8db32',
+    messagingSenderId: '849159457463',
+    projectId: 'rakwa-6fafc',
+    authDomain: 'rakwa-6fafc.firebaseapp.com',
+    storageBucket: 'rakwa-6fafc.appspot.com',
+    measurementId: 'G-FL67C9G5MR',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAzDugd59L7iOpUmUdp3HoxnHNOmiI2rjE',
-    appId: '1:881178665884:android:923887e497979682e59e59',
-    messagingSenderId: '881178665884',
-    projectId: 'rakwa-331713',
-    databaseURL: 'https://rakwa-331713-default-rtdb.firebaseio.com',
-    storageBucket: 'rakwa-331713.appspot.com',
+    apiKey: 'AIzaSyCMsF3ZTmwH5pR33k8xfYg1WvqkcR-GySg',
+    appId: '1:849159457463:android:cd48542dc12026fdc8db32',
+    messagingSenderId: '849159457463',
+    projectId: 'rakwa-6fafc',
+    storageBucket: 'rakwa-6fafc.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyARcJwfHBkUl84WSlMIAGTL5dwJn-fmRnU',
-    appId: '1:881178665884:ios:d4364b5b4bf95575e59e59',
-    messagingSenderId: '881178665884',
-    projectId: 'rakwa-331713',
-    databaseURL: 'https://rakwa-331713-default-rtdb.firebaseio.com',
-    storageBucket: 'rakwa-331713.appspot.com',
-    iosClientId: '881178665884-hkl20o9bmolqaeg7bgescnqp12m4gh6v.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCtqCoO0NedlmsnEab8acG2CUIaH3XK9ps',
+    appId: '1:849159457463:ios:5084f75a5c94c2c6c8db32',
+    messagingSenderId: '849159457463',
+    projectId: 'rakwa-6fafc',
+    storageBucket: 'rakwa-6fafc.appspot.com',
+    iosClientId: '849159457463-pspraodcgua3in5i1tvoietf4uaa6g5g.apps.googleusercontent.com',
+    iosBundleId: 'com.turkey.rakwa',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCtqCoO0NedlmsnEab8acG2CUIaH3XK9ps',
+    appId: '1:849159457463:ios:d9b08a402d50a0f8c8db32',
+    messagingSenderId: '849159457463',
+    projectId: 'rakwa-6fafc',
+    storageBucket: 'rakwa-6fafc.appspot.com',
+    iosClientId: '849159457463-0j8tnj3etulqp9rl0um6t3ke9q41fbem.apps.googleusercontent.com',
     iosBundleId: 'rakwa.turkey.com',
   );
 }

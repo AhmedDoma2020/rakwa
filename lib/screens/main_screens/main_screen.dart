@@ -14,6 +14,7 @@ import 'package:rakwa/screens/main_screens/btm_nav_screens/more_screen.dart';
 import 'package:rakwa/shared_preferences/shared_preferences.dart';
 import 'package:rakwa/Core/utils/helpers.dart';
 
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -233,7 +234,7 @@ class _MainScreenState extends State<MainScreen>
       //         elevation: 0,
       //         centerTitle: true,
       //         title: Image.asset(
-      //           'images/logo.png',
+      //           'images/logo.jpg',
       //           height: 42,
       //           width: 42,
       //         ),

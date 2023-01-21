@@ -68,7 +68,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
         children: [
           const Spacer(),
           Center(
-            child: Image.asset('images/logo.png'),
+            child: Image.asset('images/logo.jpg'),
           ),
           const Spacer(),
           // Padding(

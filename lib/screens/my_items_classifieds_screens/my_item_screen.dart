@@ -45,7 +45,7 @@ class _MyItemScreenState extends State<MyItemScreen> {
                       print(snapshot.data![index].id);
                       Get.to(
                         () => DetailsScreen(
-                          id: snapshot.data![index].id!,
+                          id: snapshot.data![index].id!.toString(),
                         ),
                       );
                     },

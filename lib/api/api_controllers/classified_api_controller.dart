@@ -58,11 +58,11 @@ class ClassifiedApiController with ApiHelper {
       required String classifiedcategories}) async {
         print(category);
     Uri uri = Uri.parse(
-        'https://rakwa.com/api/filter/classified?filter_categories[]=$category&filter_state=$stateId&filter_city=$cityId&filter_sort_by=1');
+        'https://rakwa.com/api/filter/classified?filter_categories[]=$category&filter_state=$stateId&filter_city=$cityId&filter_sort_by=1&paginate=200');
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
-      var jsonArray = jsonResponse['paid_classified']['data'] as List;
+      var jsonArray = jsonResponse['free_classified']['data'] as List;
       return jsonArray.map((e) => PaidItemsModel.fromJson(e)).toList();
     }
     return [];

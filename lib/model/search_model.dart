@@ -7,24 +7,25 @@ class SearchModel {
   List<String>? filterCategories;
   dynamic searchQuery;
   String? filterSortBy;
-  List<dynamic>? paidItems;
+  // List<dynamic>? paidItems;
   List<FreeItems>? freeItems;
-  List<dynamic>? paidClassified;
+  // List<dynamic>? paidClassified;
   List<dynamic>? freeClassified;
 
-  SearchModel(
-      {this.code,
-      this.status,
-      this.filterCity,
-      this.filterState,
-      this.filterClassifiedcategories,
-      this.filterCategories,
-      this.searchQuery,
-      this.filterSortBy,
-      this.paidItems,
-      this.freeItems,
-      this.paidClassified,
-      this.freeClassified});
+  SearchModel({
+    this.code,
+    this.status,
+    this.filterCity,
+    this.filterState,
+    this.filterClassifiedcategories,
+    this.filterCategories,
+    this.searchQuery,
+    this.filterSortBy,
+    // this.paidItems,
+    this.freeItems,
+    // this.paidClassified,
+    this.freeClassified,
+  });
 
   SearchModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
@@ -36,24 +37,24 @@ class SearchModel {
     filterCategories = json['filter_categories'].cast<String>();
     searchQuery = json['search_query'];
     filterSortBy = json['filter_sort_by'];
-    if (json['paid_items'] != null) {
-      paidItems = <FreeItems>[];
-      json['paid_items'].forEach((v) {
-        paidItems!.add(new FreeItems.fromJson(v));
-      });
-    }
+    // if (json['paid_items'] != null) {
+    //   paidItems = <FreeItems>[];
+    //   json['paid_items'].forEach((v) {
+    //     paidItems!.add(new FreeItems.fromJson(v));
+    //   });
+    // }
     if (json['free_items'] != null) {
       freeItems = <FreeItems>[];
       json['free_items'].forEach((v) {
         freeItems!.add(new FreeItems.fromJson(v));
       });
     }
-    if (json['paid_classified'] != null) {
-      paidClassified = <FreeItems>[];
-      json['paid_classified'].forEach((v) {
-        paidClassified!.add(new FreeItems.fromJson(v));
-      });
-    }
+    // if (json['paid_classified'] != null) {
+    //   paidClassified = <FreeItems>[];
+    //   json['paid_classified'].forEach((v) {
+    //     paidClassified!.add(new FreeItems.fromJson(v));
+    //   });
+    // }
     if (json['free_classified'] != null) {
       freeClassified = <FreeItems>[];
       json['free_classified'].forEach((v) {
@@ -72,16 +73,16 @@ class SearchModel {
     data['filter_categories'] = this.filterCategories;
     data['search_query'] = this.searchQuery;
     data['filter_sort_by'] = this.filterSortBy;
-    if (this.paidItems != null) {
-      data['paid_items'] = this.paidItems!.map((v) => v.toJson()).toList();
-    }
+    // if (this.paidItems != null) {
+    //   data['paid_items'] = this.paidItems!.map((v) => v.toJson()).toList();
+    // }
     if (this.freeItems != null) {
       data['free_items'] = this.freeItems!.map((v) => v.toJson()).toList();
     }
-    if (this.paidClassified != null) {
-      data['paid_classified'] =
-          this.paidClassified!.map((v) => v.toJson()).toList();
-    }
+    // if (this.paidClassified != null) {
+    //   data['paid_classified'] =
+    //       this.paidClassified!.map((v) => v.toJson()).toList();
+    // }
     if (this.freeClassified != null) {
       data['free_classified'] =
           this.freeClassified!.map((v) => v.toJson()).toList();
@@ -178,7 +179,8 @@ class FreeItems {
     itemHourShowHours = json['item_hour_show_hours'];
     itemSocialWhatsapp = json['item_social_whatsapp'];
     itemSocialInstagram = json['item_social_instagram'];
-    state = json['state'] != null ? new StateModel.fromJson(json['state']) : null;
+    state =
+        json['state'] != null ? new StateModel.fromJson(json['state']) : null;
     city = json['city'] != null ? new City.fromJson(json['city']) : null;
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }

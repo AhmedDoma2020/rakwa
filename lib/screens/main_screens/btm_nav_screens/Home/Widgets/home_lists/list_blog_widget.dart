@@ -105,7 +105,7 @@ class BlogWidget extends StatelessWidget {
                                               12),
                                           child: Image
                                               .asset(
-                                            'images/logo.png',
+                                            'images/logo.jpg',
                                             fit: BoxFit
                                                 .cover,
                                             width: Get

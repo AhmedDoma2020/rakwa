@@ -83,7 +83,7 @@ class HomeWidget extends StatelessWidget {
                         : ClipRRect(
                             borderRadius: imageBorderRadius,
                             child: Image.asset(
-                              'images/logo.png',
+                              'images/logo.jpg',
                               fit: BoxFit.cover,
                               width: Get.width,
                             ),

@@ -38,7 +38,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return InkWell(
       onTap: () {
         Get.to(() => SearchScreen(
-          searchNumber: widget.searchNumber,
+          categoryId: widget.searchNumber,
               isItem: widget.isItem,
             ));
       },

@@ -173,7 +173,8 @@ class _AddCustomFieldScreenState extends State<AddCustomFieldScreen> {
                         .allTextData[index][1].customFieldName!,
                     hint: isUrlField? "https://www.rakwa.com/":'ادخل هنا',
                     controller: customFieldGetxController.allTextData[index][0],
-                    keyboardType: TextInputType.multiline,
+                    keyboardType: isUrlField? TextInputType.emailAddress
+                        :TextInputType.multiline,
                     validation: isUrlField?urlValidator:null,
                     maxLines: 5,
                   );

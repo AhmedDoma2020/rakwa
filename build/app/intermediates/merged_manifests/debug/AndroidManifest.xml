@@ -98,6 +98,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- <meta-data android:name="flutter_deeplinking_enabled" android:value="true" /> -->
+            <!-- Deep Links -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="rakwa.page.link"
+                    android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+            <!-- App Links -->
+            <intent-filter android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with https://YOUR_HOST -->
+                <data
+                    android:host="rakwa.page.link"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
         <!--
              Don't delete the meta-data below.

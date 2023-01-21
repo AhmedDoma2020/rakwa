@@ -80,7 +80,7 @@ class _ViewAllClassifiedScreenState extends State<ViewAllClassifiedScreen> {
                         Get.to(
                           () => SearchScreen(
                             isItem: false,
-                            searchNumber: '${widget.categoryId},${widget.id}',
+                            categoryId: '${widget.categoryId},${widget.id}',
                           ),
                         );
                       },

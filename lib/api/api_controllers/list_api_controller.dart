@@ -56,11 +56,13 @@ class ListApiController with ApiHelper {
     }
     printDM("categoryIds body send is => $data ");
     Uri uri;
-    // if (isList) {
+    if (isList) {
       uri = Uri.parse(ApiKey.customFields);
-    // } else {
-    //   uri = Uri.parse(ApiKey.customClassifiedFields);
-    // }
+    } else {
+      uri = Uri.parse(ApiKey.customClassifiedFields);
+    }
+    printDM("getCustomFields uri send is => $uri ");
+
     var response = await http.post(uri, headers: headers, body: data);
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
@@ -240,7 +242,6 @@ class ListApiController with ApiHelper {
     requset.files.add(featureImage);
     requset.fields['item_type'] = createItemModel.itemType.toString();
     requset.fields['item_featured'] = createItemModel.itemFeatured.toString();
-
     requset.fields['item_title'] = createItemModel.itemTitle!;
     requset.fields['city_id'] = createItemModel.cityId!;
     if (createItemModel.itemAddress != null && createItemModel.itemAddress!.isNotEmpty) {

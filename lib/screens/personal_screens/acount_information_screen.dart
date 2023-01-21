@@ -188,7 +188,6 @@ class _AccountInformationScreenState extends State<AccountInformationScreen>
                     builder: (controller) => GestureDetector(
                       onTap: () {
                         node.unfocus();
-
                         Get.bottomSheet(
                           BottomSheetCountry(
                             country: _listController.countrys,
