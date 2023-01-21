@@ -1,4 +1,0 @@
-#Sat Jan 21 13:03:51 EET 2023
-base.0=/Users/ahmeddoma/fluuter_pro/Freelance/New_Rakwa/rakwa/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
