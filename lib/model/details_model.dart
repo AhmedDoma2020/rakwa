@@ -159,22 +159,22 @@ class Item {
       this.savedByUsers});
 
   Item.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
+    id = json['id']??0;
+    userId = json['user_id']??0;
     categoryId = json['category_id'];
-    itemStatus = json['item_status'];
-    itemFeatured = json['item_featured'];
-    itemFeaturedByAdmin = json['item_featured_by_admin'];
-    itemTitle = json['item_title'];
-    itemSlug = json['item_slug'];
-    itemDescription = json['item_description'];
-    itemImage = json['item_image'];
-    itemAddress = json['item_address'];
-    itemAddressHide = json['item_address_hide'];
-    cityId = json['city_id'];
-    stateId = json['state_id'];
-    countryId = json['country_id'];
-    itemPostalCode = json['item_postal_code'];
+    itemStatus = json['item_status']??0;
+    itemFeatured = json['item_featured']??0;
+    itemFeaturedByAdmin = json['item_featured_by_admin']??0;
+    itemTitle = json['item_title']??'';
+    itemSlug = json['item_slug']??'';
+    itemDescription = json['item_description']??"";
+    itemImage = json['item_image']??'';
+    itemAddress = json['item_address']??'';
+    itemAddressHide = json['item_address_hide']??0;
+    cityId = json['city_id']??0;
+    stateId = json['state_id']??0;
+    countryId = json['country_id']??0;
+    itemPostalCode = json['item_postal_code']??'';
     itemPrice = json['item_price'];
     itemWebsite = json['item_website'];
     itemPhone = json['item_phone'];

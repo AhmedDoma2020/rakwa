@@ -13,7 +13,6 @@ import 'package:rakwa/screens/add_listing_screens/add_list_social_information_sc
 import 'package:rakwa/screens/add_listing_screens/add_list_title_screen.dart';
 import 'package:rakwa/screens/add_listing_screens/add_list_work_days_screen.dart';
 import 'package:rakwa/screens/add_listing_screens/done_screen.dart';
-import 'package:rakwa/shared_preferences/shared_preferences.dart';
 import 'package:rakwa/widget/SnackBar/custom_snack_bar.dart';
 
 import '../../../model/paid_items_model.dart';

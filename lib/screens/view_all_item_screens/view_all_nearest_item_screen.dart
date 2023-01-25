@@ -23,7 +23,7 @@ class _ViewAllNearestItemScreenState extends State<ViewAllNearestItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: "العناصر الاقرب اليك"),
+      appBar: AppBars.appBarDefault(title: "الاعمال الاقرب اليك"),
       body: FutureBuilder<List<PaidItemsModel>>(
         future: HomeApiController().getNearestItems(type: 0),
         builder: (context, snapshot) {
@@ -70,7 +70,7 @@ class _ViewAllNearestItemScreenState extends State<ViewAllNearestItemScreen> {
                           percentCardWidth: .9,
                             onTap: () {
                               Get.to(() =>
-                                  DetailsScreen(id: snapshot.data![index].id));
+                                  DetailsScreen(id: snapshot.data![index].id.toString()));
                             },
                             doMargin: false,
                             discount: '25',

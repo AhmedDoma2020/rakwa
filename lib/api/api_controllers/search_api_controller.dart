@@ -5,6 +5,7 @@ import 'package:rakwa/api/api_helper/api_helper.dart';
 import 'package:rakwa/api/api_setting/api_setting.dart';
 import 'package:rakwa/model/paid_items_model.dart';
 import 'package:rakwa/model/search_model.dart';
+import 'package:rakwa/shared_preferences/shared_preferences.dart';
 
 class SearchApiController with ApiHelper {
   Future<List<PaidItemsModel>> search(
@@ -17,7 +18,7 @@ class SearchApiController with ApiHelper {
     Uri uri;
 
     uri = Uri.parse(
-        'https://rakwa.com/api/search?search_query=$searchQuery&filter_state=$stateId&filter_city=$cityId&filter_sort_by=1&filter_categories%5B%5D=$category&filter_classifiedcategories%5B%5D=$classifiedcategories');
+        'https://rakwa.com/api/search?search_query=$searchQuery&filter_state=$stateId&filter_city=$cityId&filter_sort_by=7&filter_categories%5B%5D=$category&filter_classifiedcategories%5B%5D=$classifiedcategories&paginate=200&lat=${SharedPrefController().lat}&lng=${SharedPrefController().lng}');
 
 
     printDM("uri search_query is =>${uri}");

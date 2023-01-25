@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rakwa/Core/services/dialogs.dart';
 import 'package:rakwa/Core/utils/extensions.dart';
+import 'package:rakwa/api/api_controllers/auth_api_controller.dart';
 import 'package:rakwa/screens/Auth/Repositories/send_FCM_token_repo.dart';
 import 'package:rakwa/screens/Auth/Repositories/sign_in_repo.dart';
 import 'package:rakwa/screens/Auth/Repositories/sign_up_repo.dart';
@@ -37,13 +38,24 @@ class SignUpController extends GetxController {
           token: response.data["token"],
           isLogined: true,
         );
-        printDM("countryName is => ${SharedPrefController().countryName}");
-        _navigation();
+        printDM("SharedPrefController().token ${SharedPrefController().token}");
         customSnackBar(title: response.data["message"] ?? "");
+        _navigation();
+        _sendEmailVerification();
       } else {
         customSnackBar(title: response.data["errors"]["email"][0] ?? "", isWarning: true);
       }
     }
+  }
+  Future<void> _sendEmailVerification()async{
+    bool state =
+    await AuthApiController().emailVerification();
+    if (state) {
+      customSnackBar(
+        title: 'تمت ارسال طلب لتأكيد الحساب',
+        subtitle:
+        'يرجى مراجعة بريدك الالكتروني لتأكيد الحساب',
+      );}
   }
 
   void _navigation() {

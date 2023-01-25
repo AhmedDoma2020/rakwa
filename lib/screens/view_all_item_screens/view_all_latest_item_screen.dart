@@ -62,7 +62,7 @@ class _ViewAllLatestItemScreenState extends State<ViewAllLatestItemScreen> {
 percentCardWidth: .9,
                               onTap: () {
                                 Get.to(() => DetailsScreen(
-                                    id: snapshot.data![index].id));
+                                    id: snapshot.data![index].id.toString()));
                               },
                               discount: '25',
                               image: snapshot.data![index].itemImage,

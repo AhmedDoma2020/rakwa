@@ -8,8 +8,6 @@ import 'package:rakwa/screens/main_screens/btm_nav_screens/Ads/Screens/ads_scree
 import 'package:rakwa/screens/main_screens/btm_nav_screens/Home/Widgets/shimmer_card_home_loading.dart';
 import 'package:rakwa/widget/home_widget.dart';
 
-
-
 class PopularItems extends StatelessWidget {
   const PopularItems({Key? key}) : super(key: key);
 
@@ -18,46 +16,36 @@ class PopularItems extends StatelessWidget {
     return FutureBuilder<List<PaidItemsModel>>(
       future: HomeApiController().getPopularItems(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState ==
-            ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const ShimmerCardHomeLoading();
-        } else if (snapshot.hasData &&
-            snapshot.data!.isNotEmpty) {
+        } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ListView.separated(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            physics:
-            const NeverScrollableScrollPhysics(),
-            itemCount: snapshot.data!.length <= 8
-                ? snapshot.data!.length
-                : 8,
-            separatorBuilder: (context, index) =>
-                16.ESH(),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: snapshot.data!.length <= 8 ? snapshot.data!.length : 8,
+            separatorBuilder: (context, index) => 16.ESH(),
             itemBuilder: (context, index) {
               return HomeWidget(
                   isList: true,
                   percentCardWidth: .9,
                   onTap: () {
-                    Get.to(() => DetailsScreen(
-                        id: snapshot.data![index].id));
+                    Get.to(
+                      () => DetailsScreen(
+                        id: snapshot.data![index].id.toString(),
+                      ),
+                    );
                   },
-                  saveOnPressed: () => saveItem(
-                      id: snapshot.data![index].id
-                          .toString()),
+                  saveOnPressed: () =>
+                      saveItem(id: snapshot.data![index].id.toString()),
                   discount: '25',
-                  image:
-                  snapshot.data![index].itemImage,
-                  itemType: snapshot.data![index]
-                      .itemCategoriesString,
-                  location:
-                  snapshot.data![index].city != null
-                      ? snapshot.data![index].city!
-                      .cityName
+                  image: snapshot.data![index].itemImage,
+                  itemType: snapshot.data![index].itemCategoriesString,
+                  location: snapshot.data![index].city != null
+                      ? snapshot.data![index].city!.cityName
                       : '',
-                  title:
-                  snapshot.data![index].itemTitle,
-                  rate: snapshot
-                      .data![index].itemAverageRating);
+                  title: snapshot.data![index].itemTitle,
+                  rate: snapshot.data![index].itemAverageRating);
             },
           );
         } else {

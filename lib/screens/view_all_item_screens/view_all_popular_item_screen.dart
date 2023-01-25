@@ -61,7 +61,7 @@ class _ViewAllPopularItemScreenState extends State<ViewAllPopularItemScreen> {
 percentCardWidth: .9,
                               onTap: () {
                                 Get.to(
-                                        () => DetailsScreen(id: snapshot.data![index].id));
+                                        () => DetailsScreen(id: snapshot.data![index].id.toString()));
                               },
                               discount: '25',
                               image: snapshot.data![index].itemImage,

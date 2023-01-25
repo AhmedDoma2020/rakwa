@@ -190,7 +190,7 @@ class _AccountInformationScreenState extends State<AccountInformationScreen>
                         node.unfocus();
                         Get.bottomSheet(
                           BottomSheetCountry(
-                            country: _listController.countrys,
+                            country: controller.countrys,
                             bottomSheetTitle: "الدول",
                             countrySelectedId: countryID !=null ? countryID!:
                                 SharedPrefController()

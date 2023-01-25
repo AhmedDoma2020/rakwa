@@ -33,6 +33,8 @@ class TextFieldDefault extends StatefulWidget {
   final VoidCallback? onComplete;
   final FormFieldSetter<String>? onSaved;
   final Color hintColor;
+  final FontWeight hintWeight;
+  final double hintSize;
   final Color? labelColor;
   final Color errorColor;
   final Color fieldColor;
@@ -93,6 +95,8 @@ class TextFieldDefault extends StatefulWidget {
       this.onSaved,
       this.maxLines = 1,
       this.enable = true,
+      this.hintWeight = FontWeight.w200,
+      this.hintSize = 14,
       this.hintColor = AppColors.kCTFHintTitle,
       this.labelColor = AppColors.kCTFHintTitle,
       this.errorColor = AppColors.kCTFErrorText,
@@ -180,9 +184,10 @@ class _TextFieldDefaultState extends State<TextFieldDefault> {
               hintText: widget.hint,
 
               hintStyle: GoogleFonts.notoKufiArabic(
-                textStyle: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w200,
+                textStyle:  TextStyle(
+                  fontSize: widget.hintSize,
+                  fontWeight: widget.hintWeight,
+                  color: widget.hintColor,
                 ),
               ),
               // TextStyle(

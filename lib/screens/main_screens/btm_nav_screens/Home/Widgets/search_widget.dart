@@ -45,6 +45,9 @@ class _SearchWidgetState extends State<SearchWidget> {
       child:TextFieldDefault(
         enable: false,
         hint: 'ابحث عن...',
+        hintColor: Colors.black,
+        hintSize: 16,
+        hintWeight: FontWeight.w400,
         prefixIconData: Icons.search,
         suffixIconData: Icons.filter_list,
         suffixColor: Colors.black,

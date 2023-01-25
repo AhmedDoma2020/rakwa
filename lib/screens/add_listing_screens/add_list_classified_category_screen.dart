@@ -37,6 +37,7 @@ class _AddListClassifiedCategoryScreenState extends State<AddListClassifiedCateg
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ListController());
     final AddWorkOrAdsController addWordController =
     Get.put(AddWorkOrAdsController(isList: false));
     return Scaffold(

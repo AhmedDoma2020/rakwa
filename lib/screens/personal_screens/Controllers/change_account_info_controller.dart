@@ -32,7 +32,7 @@ class ChangeAccountInfoController extends GetxController {
         phone: phoneController.text,
         email: emailController.text,
         file: file,
-        countryId:countryId ,
+        countryId: countryId ,
       );
       Get.back();
       if (response.statusCode == 200 ) {

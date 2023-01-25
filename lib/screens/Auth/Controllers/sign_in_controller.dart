@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rakwa/Core/services/dialogs.dart';
 import 'package:rakwa/Core/utils/extensions.dart';
+import 'package:rakwa/api/api_controllers/auth_api_controller.dart';
 import 'package:rakwa/screens/Auth/Repositories/send_FCM_token_repo.dart';
 import 'package:rakwa/screens/Auth/Repositories/sign_in_repo.dart';
 import 'package:rakwa/screens/Auth/Screens/user_role_screen.dart';
@@ -31,9 +32,8 @@ class SignInController extends GetxController {
           token: response.data["token"],
           isLogined: true,
         );
-        printDM("countryName is => ${SharedPrefController().countryName}");
-        _sendFCMToken();
         customSnackBar(title: response.data["message"] ?? "");
+        _sendFCMToken();
       } else {
         customSnackBar(title: response.data["message"] ?? "", isWarning: true);
       }
@@ -44,6 +44,7 @@ class SignInController extends GetxController {
     var response = await _sendFCMTokenRepository.sendFCMToken();
     Get.offAllNamed('/main_screen');
   }
+
 
   void moveToForgetPassword() {
     Get.toNamed('/forget_password_screen');
@@ -56,10 +57,10 @@ class SignInController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    emailController = TextEditingController(text: "adoma3015@gmail.com");
-    passwordController = TextEditingController(text: "password");
-    // emailController = TextEditingController();
-    // passwordController = TextEditingController();
+    // emailController = TextEditingController(text: "adoma3015@gmail.com");
+    // passwordController = TextEditingController(text: "password");
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
   }
 
   @override

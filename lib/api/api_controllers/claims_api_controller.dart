@@ -27,8 +27,9 @@ class ClaimsApiController with ApiHelper {
     requset.fields['item_claim_email'] = email;
     requset.fields['item_claim_additional_proof'] = proof;
 
+    print("requset.fields is => ${requset.fields}");
     var response = await requset.send();
-    print(response.statusCode);
+    print("response.statusCode is => ${response.statusCode}");
 
     response.stream.transform(utf8.decoder).listen((value) {
           print(value);

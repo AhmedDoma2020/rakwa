@@ -113,8 +113,13 @@ class _DetailsClassifiedScreenState extends State<DetailsClassifiedScreen>
                         SaveItemWidget(
                           id: snapshot.data!.classified!.id.toString(),
                         ),
-                        ShareItemWidget(id: snapshot.data!.classified!.id.toString(),kayType: "classified"),
-
+                        ShareItemWidget(
+                          id: snapshot.data!.classified!.id.toString(),
+                          title: snapshot.data!.classified!.itemTitle!,
+                          description: snapshot.data!.classified!.itemDescription!,
+                          image: 'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${snapshot.data!.classified!.itemImage}',
+                          kayType: "classified",
+                        ),
                       ],
                       flexibleSpace: FlexibleSpaceBar(
                         title: Container(

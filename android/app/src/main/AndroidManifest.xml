@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.rakwa">
-    
-<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:node="remove" tools:ignore="QueryAllPackagesPermission" />
 <uses-permission android:name="android.permission.INTERNET" />
 
 
@@ -16,6 +18,16 @@
     <action android:name="android.intent.action.DIAL" />
     <data android:scheme="tel" />
   </intent>
+    <!-- If your app checks for SMS support -->
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="sms" />
+    </intent>
+    <!-- If your app checks for call support -->
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="tel" />
+    </intent>
   <!-- If your sends SMS messages -->
   <intent>
     <action android:name="android.intent.action.SENDTO" />

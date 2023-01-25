@@ -184,7 +184,7 @@ class _SavedWorksTapState extends State<SavedWorksTap> with Helpers {
                   onTap: () {
                     Get.to(
                       () => DetailsScreen(
-                        id: snapshot.data![index].id,
+                        id: snapshot.data![index].id.toString(),
                       ),
                     );
                   },

@@ -10,6 +10,7 @@ import 'package:rakwa/model/nearby_model.dart';
 
 class DetailsApiController with ApiHelper {
   Future<DetailsModel?> getDetails({required String id}) async {
+    printDM("item id is $id");
     Uri uri = Uri.parse('${ApiKey.itemDetails}$id');
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {

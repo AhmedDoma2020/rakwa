@@ -129,7 +129,15 @@ class _DetailsScreenState extends State<DetailsScreen>
                       leading: LeadingSliverAppBarIconDetailsScreen(),
                       actions: [
                         SaveItemWidget(id: snapshot.data!.item!.id.toString()),
-                        ShareItemWidget(id: snapshot.data!.item!.id.toString(),kayType: "category"),
+                        ShareItemWidget(
+                          id: snapshot.data!.item!.id.toString(),
+                          title: snapshot.data!.item!.itemTitle!,
+                          description: snapshot.data!.item!.itemDescription!,
+                          image: snapshot.data!.item!.galleries!.isEmpty
+                              ? ""
+                              : 'https://www.rakwa.com/laravel_project/public/storage/item/gallery/${snapshot.data!.item!.galleries![0].itemImageGalleryName}',
+                          kayType: "category",
+                        ),
                       ],
                       flexibleSpace: FlexibleSpaceBar(
                         title: Container(
@@ -403,12 +411,11 @@ class SaveItemWidget extends StatelessWidget with Helpers {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(  vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: CircleAvatar(
         backgroundColor: Colors.black.withOpacity(0.4),
         child: IconButton(
-            onPressed: () async{
-
+            onPressed: () async {
               saveItem(id: id);
             },
             icon: const Icon(

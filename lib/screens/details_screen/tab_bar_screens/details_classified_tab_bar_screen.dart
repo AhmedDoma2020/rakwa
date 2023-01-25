@@ -695,7 +695,7 @@ class _DetailsClassifiedTabBarScreenState
                                 widget.detailsModel.classified!.id.toString()));
                       },
                       child: Column(
-                        children: const [Icon(Icons.message), Text('المسجات')],
+                        children: const [Icon(Icons.message), Text('الرسائل')],
                       ),
                     ),
                     const VerticalDivider(

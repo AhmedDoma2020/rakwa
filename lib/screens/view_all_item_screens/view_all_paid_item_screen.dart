@@ -71,7 +71,7 @@ class _ViewAllPaidItemScreenState extends State<ViewAllPaidItemScreen> {
                             percentCardWidth: .9,
                             onTap: () {
                               Get.to(() =>
-                                  DetailsScreen(id: snapshot.data![index].id));
+                                  DetailsScreen(id: snapshot.data![index].id.toString()));
                             },
                             doMargin: false,
                             discount: '25',

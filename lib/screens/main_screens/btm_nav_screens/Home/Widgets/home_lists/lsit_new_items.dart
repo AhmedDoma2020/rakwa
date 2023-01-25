@@ -32,7 +32,7 @@ class NewItems extends StatelessWidget {
                 : 8,
             separatorBuilder: (context, index) =>
             const SizedBox(
-              width: 12,
+              height: 12,
             ),
             itemBuilder: (context, index) {
               return HomeWidget(
@@ -40,7 +40,7 @@ class NewItems extends StatelessWidget {
                   percentCardWidth: .9,
                   onTap: () {
                     Get.to(() => DetailsScreen(
-                        id: snapshot.data![index].id));
+                        id: snapshot.data![index].id.toString()));
                   },
                   saveOnPressed: () => saveItem(
                       id: snapshot.data![index].id

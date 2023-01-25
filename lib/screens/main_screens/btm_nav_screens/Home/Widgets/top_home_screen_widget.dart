@@ -10,6 +10,7 @@ import 'package:rakwa/app_colors/app_colors.dart';
 import 'package:rakwa/controller/location_controller.dart';
 import 'package:rakwa/screens/main_screens/btm_nav_screens/personal_screen.dart';
 import 'package:rakwa/screens/nearby_screen/nearby_screen.dart';
+import 'package:rakwa/screens/view_all_item_screens/view_all_nearest_item_screen.dart';
 import 'package:rakwa/shared_preferences/shared_preferences.dart';
 
 class TopHomeScreenWidget extends StatelessWidget {
@@ -62,7 +63,7 @@ class TopHomeScreenWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: Get.height*.13,
+          top: Get.height * .13,
           right: 16,
           child: Column(
             children: [
@@ -76,26 +77,13 @@ class TopHomeScreenWidget extends StatelessWidget {
               6.ESH(),
               InkWell(
                 onTap: () async {
-                  LocationData? locationData =
-                      await LocationController().getLocation();
-                  if (locationData != null) {
-                    Get.to(
-                      () => NearbyScreen(
-                        lat: locationData.latitude ?? 40.978829,
-                        lng: locationData.longitude ?? 28.716824,
-                      ),
-                    );
-                  } else {
-                    Get.to(
-                      () => NearbyScreen(
-                        lat: 40.978829,
-                        lng: 28.716824,
-                      ),
-                    );
-                  }
+                  Get.to(
+                    () => ViewAllNearestItemScreen(),
+                  );
                 },
                 child: Container(
-                   padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                       color: AppColors.mainColor,
                       borderRadius: BorderRadius.circular(5)),
@@ -120,7 +108,7 @@ class TopHomeScreenWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: Get.height*.05,
+          top: Get.height * .05,
           left: 24,
           child: InkWell(
             onTap: () {

@@ -80,8 +80,15 @@ import 'package:flutter/material.dart';
 FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
 class DynamicLink {
-
-  Future<String> createDynamicLink(bool short, String id) async {
+  Future<String> createDynamicLink(
+      {
+       required bool short,
+        required   String id,
+        required  String title,
+        required  String description,
+        required String image,
+      }) async {
+    printDM("image is $image");
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rakwa.page.link',
       link: Uri.parse('https://rakwa.page.link/category?id=$id'),
@@ -95,18 +102,16 @@ class DynamicLink {
         appStoreId: '1660636889',
       ),
       socialMetaTagParameters: SocialMetaTagParameters(
-        title: 'title',
-        description: "description",
-        imageUrl: Uri.parse(
-          'https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg',
-        ),
+        title: title,
+        description: description,
+        imageUrl: Uri.parse(image),
       ),
     );
 
     Uri url;
     if (short) {
       final ShortDynamicLink shortLink =
-      await dynamicLinks.buildShortLink(parameters);
+          await dynamicLinks.buildShortLink(parameters);
       url = shortLink.shortUrl;
     } else {
       url = await dynamicLinks.buildLink(parameters);
@@ -116,7 +121,6 @@ class DynamicLink {
     return _dynamicLink;
   }
 
-
   Future<void> retrieveDynamicLink() async {
     try {
       Uri? deepLink;
@@ -125,46 +129,26 @@ class DynamicLink {
         printDM("deepLink.pathSegments is ");
         if (deepLink != null) {
           printDM("deepLink.pathSegments is ${deepLink!.queryParameters}");
-
-          String? id = deepLink!.queryParameters['id']??"";
-          if(id!=""){
-          print("ID :::: $id");
-          Get.to(() => DetailsScreen(
-                id: id,
-              ));
+          String? id = deepLink!.queryParameters['id'] ?? "";
+          if (id != "") {
+            print("ID :::: $id");
+            Get.to(
+              () => DetailsScreen(
+                id: id.toString(),
+              ),
+            );
           }
         }
       });
-      //
-
-      // FirebaseDynamicLinks.instance.onLink(
-      //     onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-      //   final Uri deepLink = dynamicLink!.link;
-      //   String id = deepLink.queryParameters['id'] ?? "";
-      //   print(' id....................... $id');
-      //   Get.to(() => DetailsScreen(
-      //     id: id,
-      //   ));
-      //
-      //     });
-
-      dynamicLinks.onLink.listen((dynamicLinkData) async{
-        final Uri deepLink =await dynamicLinkData.link;
-
-        printDM("deepLink. data is ${deepLink.data}");
-        printDM("deepLink. path is ${deepLink.path}");
-        printDM("deepLink. fragment is ${deepLink.fragment}");
-        printDM("deepLink. pathSegments is ${deepLink.pathSegments}");
-        printDM("deepLink. queryParameters is ${deepLink.queryParameters}");
+      dynamicLinks.onLink.listen((dynamicLinkData) async {
+        final Uri deepLink = await dynamicLinkData.link;
         String id = deepLink.queryParameters['id'] ?? "";
         print(' id....................... $id');
-        if(id!='' && id!=null){
-        Get.to(() => DetailsScreen(
-              id: id,
-            ));
+        if (id != '' && id != null) {
+          Get.to(() => DetailsScreen(
+                id: id.toString(),
+              ));
         }
-
-        /// navigation
       }).onError((error) {
         print('onLink error');
         print(error.message);
@@ -174,12 +158,10 @@ class DynamicLink {
       print(e.toString());
     }
   }
-
 }
 
-
 // https://rakwa.page.link?sd=description&si=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F73%2FLion_waiting_in_Namibia.jpg&st=title&amv=1&apn=com.example.rakwa&ibi=com.turkey.rakwa&imv=1&isi=1660636889&link=https%3A%2F%2Frakwa.page.link%2Fcategory%3Fid%3D256
-//https://rakwa.page.link?sd=description&si=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F73%2FLion_waiting_in_Namibia.jpg&st=title&amv=1&apn=com.example.rakwa&ibi=com.turkey.rakwa&imv=1&isi=1660636889&link=https%3A%2F%2Frakwa.page.link%2Fcategory%3Fid%3D512
+//https://rakwa.page.link/?isi=1660636889&ibi=com.turkey.rakwa&efr=0&imv=1&link=https%3A%2F%2Frakwa.page.link%2Fcategory%3Fid%3D256&si=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F73%2FLion_waiting_in_Namibia.jpg&sd=description&amv=1&st=title&apn=com.example.rakwa
 //https://rakwa.page.link?sd=description&si=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F73%2FLion_waiting_in_Namibia.jpg&st=title&amv=1&apn=com.example.rakwa&ibi=com.turkey.rakwa&imv=1&isi=1660636889&link=https%3A%2F%2Frakwa.page.link%2Fcategory%3Fid%3D768
 // https://rakwa.page.link/s4QR
 //https://rakwa.page.link/WGAX

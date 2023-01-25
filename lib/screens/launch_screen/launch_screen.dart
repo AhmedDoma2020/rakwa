@@ -24,25 +24,18 @@ class _LaunchScreenState extends State<LaunchScreen> {
       const Duration(seconds: 3),
       () {
         printDM("token in splashScreen is ${SharedPrefController().token}");
-        savePosition().then(
+        _savePosition().then(
           (value) {
-            if (SharedPrefController().isLogined &&
-                SharedPrefController().token.isNotEmpty) {
-              // if (SharedPrefController().roleId == 3) {
-              Get.offAllNamed('/main_screen');
-              // } else {
-              //   Get.offAll(() => const MainUserScreen());
-              // }
-            } else {
-              Get.offAll(() => SignInScreen());
-            }
+            _navigation();
           },
-        );
+        ).catchError((error){
+          printDM("error in delayed in get lat ang is $error");
+        });
       },
     );
   }
 
-  Future<void> savePosition() async {
+  Future<void> _savePosition() async {
     await getLocation().then((value) async {
      await SharedPrefController().savePosition(
         lat: value.latitude,
@@ -50,7 +43,27 @@ class _LaunchScreenState extends State<LaunchScreen> {
       );
       printDM("lat in lunch is => ${SharedPrefController().lat}");
       printDM("lng in lunch is => ${SharedPrefController().lng}");
+    }).catchError((error) async{
+      await SharedPrefController().savePosition(
+        lat: 0.0,
+        lng: 0.0,
+      );
+      printDM("error in _savePosition is $error");
+      printDM("lat in lunch is => ${SharedPrefController().lat}");
     });
+  }
+
+  void _navigation(){
+    if (SharedPrefController().isLogined &&
+        SharedPrefController().token.isNotEmpty) {
+      // if (SharedPrefController().roleId == 3) {
+      Get.offAllNamed('/main_screen');
+      // } else {
+      //   Get.offAll(() => const MainUserScreen());
+      // }
+    } else {
+      Get.offAll(() => SignInScreen());
+    }
   }
 
   @override

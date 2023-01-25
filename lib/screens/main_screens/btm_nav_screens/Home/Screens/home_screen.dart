@@ -51,10 +51,11 @@ class HomeScreen extends StatelessWidget {
                             const SliderHomeCategories(),
                             24.ESH(),
                             TitleAndSeeAllWidget(
-                              title: 'العناصر الاقرب اليك',
-                              onSeeAllTap: () {
-                                Get.to(() => const ViewAllNearestItemScreen());
-                              },
+                              title: 'الاعمال الاقرب اليك',
+                              avalibleSeeAll: false,
+                              // onSeeAllTap: () {
+                              //   Get.to(() => const ViewAllNearestItemScreen());
+                              // },
                             ),
                             12.ESH(),
                             const NearestItems(),

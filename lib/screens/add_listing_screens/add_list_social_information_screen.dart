@@ -39,6 +39,7 @@ class AddListSocialInformationScreen extends StatefulWidget {
 class _AddListSocialInformationScreenState
     extends State<AddListSocialInformationScreen> with Helpers {
   GetCustomFieldController customFieldGetxController = Get.find();
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,108 +52,116 @@ class _AddListSocialInformationScreenState
           title: widget.isList ? 'إضافة عمل' : 'اضافة اعلان'),
       floatingActionButton: FloatingActionButtonNext(
         onTap: () async {
-          if (customFieldGetxController.data != null) {
-            Get.to(
-              () => AddCustomFieldScreen(
-                isList: widget.isList,
-              ),
-            );
-          } else {
-            addWorkController.addWork(checkBox: [],textFiled: []);
+          if(_globalKey.currentState!.validate()){
+            _globalKey.currentState!.save();
+            if (customFieldGetxController.data != null) {
+              Get.to(
+                    () => AddCustomFieldScreen(
+                  isList: widget.isList,
+                ),
+              );
+            } else {
+              addWorkController.addWork(checkBox: [],textFiled: []);
+            }
           }
+
         },
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            24.ESH(),
-            StepsWidget(selectedStep: 5),
-            32.ESH(),
-            GetBuilder<AddWorkOrAdsController>(
-              builder: (_) => ListView(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  TextFieldDefault(
-                    upperTitle: "رقم الهاتف",
-                    hint: 'ادخل رقم الهاتف',
-                    prefixIconSvg: "TFPhone",
-                    controller: _.phoneController,
-                    keyboardType: TextInputType.name,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldDefault(
-                    upperTitle: "الموقع",
-                    hint: 'الصق URL الموقع الخاص بك هنا',
-                    prefixIconPng: "Link",
-                    controller: _.websiteController,
-                    keyboardType: TextInputType.emailAddress,
-                    validation: urlValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldDefault(
-                    upperTitle: "فيس بوك",
-                    hint: 'الصق URL الفيس بوك الخاص بك هنا',
-                    prefixIconPng: "Facebook",
-                    controller: _.facebookController,
-                    keyboardType: TextInputType.emailAddress,
-                    validation: urlValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldDefault(
-                    upperTitle: "تويتر",
-                    hint: 'الصق URL التويتر الخاص بك هنا',
-                    prefixIconPng: "Twitter",
-                    controller: _.twitterController,
-                    keyboardType: TextInputType.emailAddress,
-                    validation: urlValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldDefault(
-                    upperTitle: "الانستغرام",
-                    hint: 'الصق URL الانستغرام الخاص بك هنا',
-                    prefixIconPng: "Instagram",
-                    controller: _.instagramController,
-                    keyboardType: TextInputType.emailAddress,
-                    validation: urlValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldDefault(
-                    upperTitle: "لينكد ان",
-                    hint: 'الصق URL اللينكد ان الخاص بك هنا',
-                    prefixIconPng: "LinkedIn",
-                    controller: _.linkedInController,
-                    keyboardType: TextInputType.emailAddress,
-                    validation: urlValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                ],
+        child: Form(
+          key: _globalKey,
+          child: Column(
+            children: [
+              24.ESH(),
+              StepsWidget(selectedStep: 5),
+              32.ESH(),
+              GetBuilder<AddWorkOrAdsController>(
+                builder: (_) => ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  children: [
+                    TextFieldDefault(
+                      upperTitle: "رقم الهاتف",
+                      hint: 'ادخل رقم الهاتف',
+                      prefixIconSvg: "TFPhone",
+                      controller: _.phoneController,
+                      keyboardType: TextInputType.name,
+                      validation: phoneValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFieldDefault(
+                      upperTitle: "الموقع",
+                      hint: 'https://www.website.com',
+                      prefixIconPng: "Link",
+                      controller: _.websiteController,
+                      keyboardType: TextInputType.url,
+                      validation: urlValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFieldDefault(
+                      upperTitle: "فيس بوك",
+                      hint: 'https://www.facebook.com',
+                      prefixIconPng: "Facebook",
+                      controller: _.facebookController,
+                      keyboardType: TextInputType.url,
+                      validation: urlValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFieldDefault(
+                      upperTitle: "تويتر",
+                      hint: 'https://www.twitter.com',
+                      prefixIconPng: "Twitter",
+                      controller: _.twitterController,
+                      keyboardType: TextInputType.url,
+                      validation: urlValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFieldDefault(
+                      upperTitle: "الانستغرام",
+                      hint: 'https://www.instgram.com',
+                      prefixIconPng: "Instagram",
+                      controller: _.instagramController,
+                      keyboardType: TextInputType.url,
+                      validation: urlValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFieldDefault(
+                      upperTitle: "لينكد ان",
+                      hint: 'https://www.linkedIn.com',
+                      prefixIconPng: "LinkedIn",
+                      controller: _.linkedInController,
+                      keyboardType: TextInputType.url,
+                      validation: urlValidator,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    const SizedBox(
+                      height: 26,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

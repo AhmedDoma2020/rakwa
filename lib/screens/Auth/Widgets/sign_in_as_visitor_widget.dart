@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rakwa/app_colors/app_colors.dart';
-import 'package:rakwa/widget/Buttons/button_default.dart';
 
 class SignInAsVisitor extends StatelessWidget {
   const SignInAsVisitor({
@@ -12,15 +10,24 @@ class SignInAsVisitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonDefault(
-      onTap: () {
+    return TextButton(
+      style: ButtonStyle(
+        overlayColor:
+            MaterialStateColor.resolveWith((states) => AppColors.mainColor.withOpacity(.04)),
+      ),
+      onPressed: () {
         Get.toNamed('/main_screen');
       },
-      title: 'تسجيل الدخول كضيف',
-      titleColor: AppColors.mainColor,
-      titleSize: 12,
-      buttonColor: Colors.transparent,
-      width: 120,
+      child: Text(
+        'تسجيل الدخول كضيف',
+        style: GoogleFonts.notoKufiArabic(
+          textStyle: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: AppColors.mainColor,
+          ),
+        ),
+      ),
     );
   }
 }

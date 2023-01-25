@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:html/parser.dart';
+import 'package:rakwa/Core/services/launcher_service.dart';
 import 'package:rakwa/Core/utils/extensions.dart';
 import 'package:rakwa/Core/utils/view_photo.dart';
 import 'package:rakwa/api/api_controllers/review_api_controller.dart';
@@ -388,8 +389,9 @@ class _DetailsTabBarScreenState extends State<DetailsTabBarScreen>
                       ),
                       child: ListTile(
                         onTap: () {
-                          launchUrlString(
-                              'mailto:${widget.detailsModel.item!.email}?subject=This is Subject Title&body=This is Body of Email');
+                          LauncherServices.launchToMail(widget.detailsModel.item!.email);
+                          // launchUrlString(
+                          //     'mailto:${widget.detailsModel.item!.email}?subject=This is Subject Title&body=This is Body of Email');
                         },
                         title: Text(
                           'البريد الالكتروني',

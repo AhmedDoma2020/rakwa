@@ -21,7 +21,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   Widget build(BuildContext context) {
     Get.put(GetAllMessageController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: "المسجات"),
+      appBar: AppBars.appBarDefault(title: "الرسائل"),
       body: GetBuilder<GetAllMessageController>(
         id: 'updateAllMessage',
         builder: (_) {

@@ -99,7 +99,7 @@ class HomeApiController with ApiHelper {
     return [];
   }
   Future<List<PaidItemsModel>> getNearestItems({required int type}) async {
-    Uri uri = Uri.parse("${ApiKey.nearestItems}?item_lat=${SharedPrefController().lat}&item_lng=${SharedPrefController().lng}&type=$type");
+    Uri uri = Uri.parse("${ApiKey.nearestItems}?lat=${SharedPrefController().lat}&lng=${SharedPrefController().lng}&type=$type");
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       printDM("uri in getNearestItems is ${uri}");
@@ -150,7 +150,7 @@ class HomeApiController with ApiHelper {
     return [];
   }
   Future<List<PaidItemsModel>> getNearestClassified({required int type}) async {
-    Uri uri = Uri.parse("${ApiKey.nearestClassified}?item_lat=${SharedPrefController().lat}&item_lng=${SharedPrefController().lng}&type=$type");
+    Uri uri = Uri.parse("${ApiKey.nearestClassified}?lat=${SharedPrefController().lat}&lng=${SharedPrefController().lng}&type=$type");
     var response = await http.get(uri, headers: tokenKey);
     if (response.statusCode == 200) {
       printDM("response.body in getNearestClassified is ${response.body}");
